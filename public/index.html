@@ -7,62 +7,265 @@
 </head>
 <body>
 
-    <h1> Gestion de usuarios </h1>
-    <button id="mostrarCrearUsuarioFormBtn"> + Crear Usuario</button>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"], input[type="number"], input[type="url"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background: #00c3ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
 
+    <h1> Productos y Características </h1>
 
-    <!-- form para CREAR nuevo usuario-->
-    <form id="crearUsuarioForm" class="hidden" enctype="multipart/form-data">
-        <h2>Crear Usuario</h2>
-        <label for="nombre"> Nombre: </label>
-        <input type="text" id="nombre" name="nombre" required>
+    
+        <div class="form-group">
+        
+        <form id="crearPruducto">
+            <h2>Formulario de Marca</h2>
 
-        <label for="apellido"> Apellido: </label>
-        <input type="text" id="apellido" name="apellido" required>
+                <label for="nombre">Nombre de la Marca:</label>
+                <select id="nombre" name="nombre" required>
+                    <option value="Adidas">Adidas</option>
+                    <option value="Nike">Nike</option>
+                    <option value="H&M">H&M</option>
+                    <option value="Puma">Puma</option>
+                    <option value="Etiqueta Negra">Etiqueta Negra</option>
+                    <option value="Zara">Zara</option>
+                </select>
+            
+                <label for="categoria">Categoría:</label>
+                <input type="text" id="categoria" name="categoria" required>
+            
+          
+        <h2>Formulario de Producto</h2>
+        
+                    <label for="idMarca">ID de Marca:</label>
+                    <input type="number" id="IdMarca" name="IdMarca" required>
+                
 
-        <label for="mail"> Mail: </label>
-        <input type="email" id="mail" name="mail" required>
+            
+                <label for="productName">Nombre del Producto:</label>
+                <input type="text" id="productName" name="productName" required>
+           
+           
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion"></textarea>
+           
+            
+                <label for="temporada">Temporada:</label>
+                <select id="temporada" name="temporada" required>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                </select>
+            
+            
+                <label for="basePrice">Precio Base:</label>
+                <input type="number" id="basePrice" name="basePrice" step="0.01" required>
+            
+            
+      
 
-        <!-- SE SUBE LA IMAGEN-->
-        <label for="archivo"> Archivos: </label>
-        <input type="file" id="archivo" name="archivo">
+       
+        <h2>Formulario de Color</h2>
+        
+            
+                <label for="idProduct">ID del Producto:</label>
+                <input type="number" id="idProduct" name="idProduct" required>
+            
+            
+                <label for="colorName">Nombre del Color:</label>
+                <input type="text" id="colorName" name="colorName" required>
+           
+           
+                <label for="photoURL">URL de la Foto:</label>
+                <input type="url" id="photoURL" name="photoURL" required>
+            <!--
 
-        <button type="submit"> Crear Usuario </button>
+               si usamos Multer
+                <label for="archivo"> Archivos: </label>
+                <input type="file" id="archivo" name="archivo">
+            
+            
+            -->
 
-    </form>
+        <h2>Formulario de Detalles del Producto</h2>
+        
+      
+                <label for="idProductDetail">ID del Detalle del Producto:</label>
+                <input type="number" id="idProductDetail" name="idProductDetail" required>
+            
+       
+                <label for="idProduct">ID del Producto:</label>
+                <input type="number" id="idProduct" name="idProduct" required>
+           
+          
+                <label for="idColor">ID del Color:</label>
+                <input type="number" id="idColor" name="idColor" required>
+          
+           
+                <label for="size">Tamaño:</label>
+                <input type="text" id="size" name="size" required>
+           
+          
+                <label for="stock">Stock:</label>
+                <input type="number" id="stock" name="stock" required>
+          
+            <input type="submit" value="Guardar ">
+        </form>
+    </div>
 
-    <!--FORM PARA EDITAR USUARIOS-->
-    <form id="editarUsuarioForm" class="hidden" enctype="multipart/form-data">
-        <h2>Editar Usuario</h2>
+    <form id="editarProductoForm" class="hidden" enctype="multipart/form-data">
+
+       
+       
+
+        <h3>Editar Marca</h3>
         <input type="hidden" id="editID" name="editID">
 
-        <label for="editNombre">Nombre: </label>
-        <input type="text" id="editNombre" name="editNombre" required>
 
-        
-        <label for="editApellido">Apellido: </label>
-        <input type="text" id="editApellido" name="editApellido" required>
+        <label for="editNombre">Nombre de la Marca:</label>
+        <select id="editNombre" name="editNombre" required>
+            <option value="Adidas">Adidas</option>
+            <option value="Nike">Nike</option>
+            <option value="H&M">H&M</option>
+            <option value="Puma">Puma</option>
+            <option value="Etiqueta Negra">Etiqueta Negra</option>
+            <option value="Zara">Zara</option>
+        </select>
+    
+        <label for="editCategoria">Categoría:</label>
+        <input type="text" id="editCategoria" name="editCategoria" required>
 
-        
-        <label for="editMail">Mail: </label>
-        <input type="email" id="editMail" name="editMail" required>
+
+        <h2>Editar Producto</h2>
+
+        <label for="editIdMarca">ID de Marca:</label>
+        <input type="number" id="editIdMarca" name="editIdMarca" required>
+    
+
+
+        <label for="editProductName">Nombre del Producto:</label>
+        <input type="text" id="editProductName" name="editProductName" required>
+
+
+        <label for="editDescripcion">Descripción:</label>
+        <textarea id="editDescripcion" name="editDescripcion"></textarea>
+
+
+        <label for="editTemporada">Temporada:</label>
+        <select id="editTemporada" name="editTemporada" required>
+
+        <option value="1">Sí</option>
+        <option value="0">No</option>
+        </select>
+
+
+        <label for="editBasePrice">Precio Base:</label>
+        <input type="number" id="editBasePrice" name="editBasePrice" step="0.01" required>
+
+        <h3>Formulario de Color</h3>
+
+        <label for="editIdProduct">ID del Producto:</label>
+        <input type="number" id="editIdProduct" name="editIdProduct" required>
+    
+    
+        <label for="editColorName">Nombre del Color:</label>
+        <input type="text" id="editColorName" name="editColorName" required>
+   
+   
+        <label for="photoURL">URL de la Foto:</label>
+        <input type="url" id="photoURL" name="photoURL" required>
+    <!--
+
+       si usamos Multer
+        <label for="archivo"> Archivos: </label>
+        <input type="file" id="archivo" name="archivo">
+    
+    
+    -->
+
+        <h3>Formulario de Detalles del Producto</h3>
+
+
+        <label for="editIdProductDetail">ID del Detalle del Producto:</label>
+        <input type="number" id="editIdProductDetail" name="editIdProductDetail" required>
+    
+
+        <label for="editIdProduct">ID del Producto:</label>
+        <input type="number" id="editIdProduct" name="editIdProduct" required>
+   
+  
+        <label for="editIdColor">ID del Color:</label>
+        <input type="number" id="editIdColor" name="editidColor" required>
+  
+   
+        <label for="editSize">Tamaño:</label>
+        <input type="text" id="editSize" name="editSize" required>
+   
+  
+        <label for="editStock">Stock:</label>
+        <input type="number" id="editStock" name="editStock" required>
+
 
         <!--solo se muestra la imagen.. NO SE PUEDE EDITAR CON MULTER-->
         <img id="currentImage" src="" alt="imagen actual" width="100px">
         
-        <button type="submit"> Actualizar Usuario</button>
+        <button type="submit"> Actualizar Producto</button>
 
     </form>
 
 
-    <h2>Lista de Usuarios</h2>
-    <button id="listarUsuariosBtn"> Listar Todos Los usuarios</button>
-    <ul id="listaUsuarios">
+
+
+
+
+    <h2>Lista de Productos</h2>
+    <button id="ProductosBtn"> Listar Todos Los Productos</button>
+    <ul id="listaProductos">
 
     </ul>
 
 
-
-    <script src="script.js"></script>
+    
 </body>
 </html>
+
