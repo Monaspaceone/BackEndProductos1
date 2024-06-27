@@ -4,8 +4,8 @@ const connection = mySql.createConnection(
     {
         host : 'localhost',
         user: 'root',
-        password : 'Loveisall77',
-        database: 'usuarios_db'
+        password : 'norabc22mysql',
+        database: 'tienda_ropa3'
     });
 
 
@@ -13,11 +13,11 @@ const connection = mySql.createConnection(
     {
         if(err)
         {
-            console.error("ERROR conectando a la base de datos", err);
+            console.error("ERROR conectando a la base de datos TIENDA", err);
             return;
         }
 
-        console.log("Conectado EXITOSAMENTE a la base de datos");
+        console.log("Conectado EXITOSAMENTE a la base de datos TIENDA");
 
     });
 

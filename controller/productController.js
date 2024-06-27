@@ -18,7 +18,7 @@ const storage = multer.diskStorage(
         },
         fileFilter: (req,file,cb) =>
         {
-            const fileTypes = /jpeg|jpg|png|txt/;
+            const fileTypes = /jpeg|jpg|png/;
 
 
             const mimeType = fileTypes.test(file.mimetype.toLowerCase());
@@ -48,9 +48,17 @@ const storage = multer.diskStorage(
 
 
 
-const ObtenerTodosLosUsuarios = (req,res) => 
+const ObtenerTodosLosProductos = (req,res) => 
 {
-    const sql = 'SELECT * FROM usuarios';
+    const sql = 'SELECT Products1.idProduct as id,' & 
+                       'Products1.productName as Nombre,' &
+                       'Products1.productName as Nombre,' &
+                       'Products1.descripcion as Descripcion,' &
+                       'Products1.temporada as Temporada,' &
+                       'Products1.basePrice as Precio,' &
+                       'Marca.nombre AS Marca' &
+                'FROM Products1, Marca' &
+                'WHERE Products1.idMarca = Marca.idMarca';
 
     db.query(sql, (err,result) => 
     {
@@ -63,7 +71,15 @@ const ObtenerTodosLosUsuarios = (req,res) =>
 
 const ObtenerUsuarioPorId = (req, res) =>{
     const {id} = req.params;
-    const sql = 'SELECT * FROM usuarios WHERE id = ?';
+    const sql = 'SELECT Products1.idProduct as id,' & 
+                       'Products1.productName as Nombre,' &
+                       'Products1.descripcion as Descripcion,' &
+                       'Products1.temporada as Temporada,' &
+                       'Products1.basePrice as Precio,' &
+                       'Marca.nombre AS Marca' &
+                'FROM Products1, Marca' &
+                'WHERE Products1.idMarca = Marca.idMarca AND Products1.idProduct = ?';
+
     db.query(sql,[id], (err,result) =>
     {
         if(err) throw err;        
@@ -73,22 +89,25 @@ const ObtenerUsuarioPorId = (req, res) =>{
 
 
 //ESTO SI ES NECESARIO EDITAR CON MULTER
-const crearUsuario = (req, res) =>{
+
+const crearProducto = (req, res) =>{
     const {nombre,apellido,mail} = req.body;
     const archivo = req.file? req.file.filename: null;//Obtener el nombre del archivo guardado
 
+    //Crea un registro en la base Productos
+    const sql1 = 'INSERT INTO Products1 (idMarca, productName, descripcion, temporada, basePrice) VALUES (?,?,?,?,?)';
 
-    const sql = 'INSERT INTO usuarios (nombre,apellido,mail, ruta_archivo) VALUES (?,?,?,?)';
+ //   'INSERT INTO usuarios (nombre,apellido,mail, ruta_archivo) VALUES (?,?,?,?)';
 
 
-    db.query(sql,[nombre,apellido,mail,archivo], (err,result) =>
+    db.query(sql1,[nombre,apellido,mail,archivo], (err,result) =>
     {
         if(err) throw err;
 
 
         res.json({
-            message : 'Usuario Creado',
-            idUsuario: result.insertId
+            message : 'Producto Creado exitosamente',
+            idProducto: result.insertId
             });
     });
 };
