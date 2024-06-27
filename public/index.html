@@ -7,51 +7,6 @@
 </head>
 <body>
 
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 50%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        input[type="text"], input[type="number"], input[type="url"], select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            background: #00c3ff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        input[type="submit"]:hover {
-            background: #555;
-        }
-    </style>
-</head>
 <body>
 
     <h1> Productos y Características </h1>
@@ -127,7 +82,7 @@
             
             -->
 
-        <h2>Formulario de Detalles del Producto</h2>
+        <h3>Formulario de Detalles del Producto</h3>
         
       
                 <label for="idProductDetail">ID del Detalle del Producto:</label>
@@ -153,11 +108,12 @@
         </form>
     </div>
 
+
+
+
+  <div> <br>
+    
     <form id="editarProductoForm" class="hidden" enctype="multipart/form-data">
-
-       
-       
-
         <h3>Editar Marca</h3>
         <input type="hidden" id="editID" name="editID">
 
@@ -223,8 +179,7 @@
     
     -->
 
-        <h3>Formulario de Detalles del Producto</h3>
-
+        <h2>Editar detalle de Producto</h2>
 
         <label for="editIdProductDetail">ID del Detalle del Producto:</label>
         <input type="number" id="editIdProductDetail" name="editIdProductDetail" required>
@@ -252,11 +207,7 @@
         <button type="submit"> Actualizar Producto</button>
 
     </form>
-
-
-
-
-
+</div>
 
     <h2>Lista de Productos</h2>
     <button id="ProductosBtn"> Listar Todos Los Productos</button>
