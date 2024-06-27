@@ -15,7 +15,8 @@
         <div class="form-group">
         
         <form id="crearPruducto">
-            <h2>Formulario de Marca</h2>
+            <h2>Formulario de Producto: </h2>
+            <h2> Marca</h2>
 
                 <label for="nombre">Nombre de la Marca:</label>
                 <select id="nombre" name="nombre" required>
@@ -31,12 +32,10 @@
                 <input type="text" id="categoria" name="categoria" required>
             
           
-        <h2>Formulario de Producto</h2>
+        <h2> Producto</h2>
         
-                    <label for="idMarca">ID de Marca:</label>
-                    <input type="number" id="IdMarca" name="IdMarca" required>
-                
-
+                 <label for="idMarca">ID de Marca:</label>
+                 <input type="number" id="IdMarca" name="IdMarca" required>
             
                 <label for="productName">Nombre del Producto:</label>
                 <input type="text" id="productName" name="productName" required>
@@ -60,7 +59,7 @@
       
 
        
-        <h2>Formulario de Color</h2>
+        <h2> Color</h2>
         
             
                 <label for="idProduct">ID del Producto:</label>
@@ -82,7 +81,7 @@
             
             -->
 
-        <h3>Formulario de Detalles del Producto</h3>
+        <h3> Detalles del Producto</h3>
         
       
                 <label for="idProductDetail">ID del Detalle del Producto:</label>
@@ -111,12 +110,12 @@
 
 
 
-  <div> <br>
-    
+  <div class="editarProducto"> 
+ <h2> Editar Producto: </h2>
+
     <form id="editarProductoForm" class="hidden" enctype="multipart/form-data">
         <h3>Editar Marca</h3>
         <input type="hidden" id="editID" name="editID">
-
 
         <label for="editNombre">Nombre de la Marca:</label>
         <select id="editNombre" name="editNombre" required>
@@ -138,7 +137,6 @@
         <input type="number" id="editIdMarca" name="editIdMarca" required>
     
 
-
         <label for="editProductName">Nombre del Producto:</label>
         <input type="text" id="editProductName" name="editProductName" required>
 
@@ -158,7 +156,7 @@
         <label for="editBasePrice">Precio Base:</label>
         <input type="number" id="editBasePrice" name="editBasePrice" step="0.01" required>
 
-        <h3>Formulario de Color</h3>
+        <h3>Editar de Color</h3>
 
         <label for="editIdProduct">ID del Producto:</label>
         <input type="number" id="editIdProduct" name="editIdProduct" required>
