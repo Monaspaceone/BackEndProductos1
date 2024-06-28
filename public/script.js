@@ -16,6 +16,7 @@ const currentImage = document.getElementById('currentImage');
     });
 
 
+
     //CREAR USUARIOS NUEVOS
     crearUsuarioForm.addEventListener('submit', async (e) => 
     {
