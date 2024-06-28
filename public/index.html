@@ -13,24 +13,21 @@
 
     
         <div class="form-group">
-        
-        <form id="crearPruducto">
             <h2>Formulario de Producto: </h2>
+        
+        <form id="ingresarMarca">
             <h2> Marca</h2>
 
                 <label for="nombre">Nombre de la Marca:</label>
-                <select id="nombre" name="nombre" required>
-                    <option value="Adidas">Adidas</option>
-                    <option value="Nike">Nike</option>
-                    <option value="H&M">H&M</option>
-                    <option value="Puma">Puma</option>
-                    <option value="Etiqueta Negra">Etiqueta Negra</option>
-                    <option value="Zara">Zara</option>
-                </select>
-            
+                <input type="text" id="nombre" name="nombre" required>
+                   
                 <label for="categoria">Categoría:</label>
                 <input type="text" id="categoria" name="categoria" required>
+
+        <button type="submit"> Ingresar Marca</button>
+
             
+        <form id="crearProducto">
           
         <h2> Producto</h2>
         
@@ -103,14 +100,14 @@
                 <label for="stock">Stock:</label>
                 <input type="number" id="stock" name="stock" required>
           
-            <input type="submit" value="Guardar ">
+            <input type="submit" value="Guardar">
         </form>
     </div>
 
 
 
 
-  <div class="editarProducto"> 
+  <div class="group-form"> 
  <h2> Editar Producto: </h2>
 
     <form id="editarProductoForm" class="hidden" enctype="multipart/form-data">
@@ -129,7 +126,6 @@
     
         <label for="editCategoria">Categoría:</label>
         <input type="text" id="editCategoria" name="editCategoria" required>
-
 
         <h2>Editar Producto</h2>
 
@@ -208,7 +204,7 @@
 </div>
 
     <h2>Lista de Productos</h2>
-    <button id="ProductosBtn"> Listar Todos Los Productos</button>
+    <button id="listarProductosBtn"> Listar Todos Los Productos</button>
     <ul id="listaProductos">
 
     </ul>
