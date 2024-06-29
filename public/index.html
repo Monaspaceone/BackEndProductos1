@@ -24,22 +24,26 @@
                 <label for="categoria">Categoría:</label>
                 <input type="text" id="categoria" name="categoria" required>
 
-        <button type="submit"> Ingresar Marca</button>
-
+                <button type="submit"> Ingresar Marca</button> 
+         </form>
             
-        <form id="crearProducto">
-          
+        
+        <form id="crearUsuarioForm" class="hidden" enctype="multipart/form-data">
+
         <h2> Producto</h2>
         
                  <label for="idMarca">ID de Marca:</label>
                  <input type="number" id="IdMarca" name="IdMarca" required>
             
-                <label for="productName">Nombre del Producto:</label>
+                <label for="producto">Nombre del Producto:</label>
                 <input type="text" id="productName" name="productName" required>
            
            
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion"></textarea>
+
+                <label for="categoria">Categoria:</label>
+                <input type="text" id="categoria" name="categoria" required>
            
             
                 <label for="temporada">Temporada:</label>
@@ -52,9 +56,10 @@
                 <label for="basePrice">Precio Base:</label>
                 <input type="number" id="basePrice" name="basePrice" step="0.01" required>
             
-            
-      
 
+            </form>
+      
+  <!--
        
         <h2> Color</h2>
         
@@ -69,14 +74,14 @@
            
                 <label for="photoURL">URL de la Foto:</label>
                 <input type="url" id="photoURL" name="photoURL" required>
-            <!--
+            
 
                si usamos Multer
-                <label for="archivo"> Archivos: </label>
+               <label for="archivo"> Archivos: </label>
                 <input type="file" id="archivo" name="archivo">
             
             
-            -->
+            
 
         <h3> Detalles del Producto</h3>
         
@@ -164,14 +169,14 @@
    
         <label for="photoURL">URL de la Foto:</label>
         <input type="url" id="photoURL" name="photoURL" required>
-    <!--
+    
 
        si usamos Multer
         <label for="archivo"> Archivos: </label>
         <input type="file" id="archivo" name="archivo">
     
     
-    -->
+    
 
         <h2>Editar detalle de Producto</h2>
 
@@ -195,13 +200,16 @@
         <input type="number" id="editStock" name="editStock" required>
 
 
-        <!--solo se muestra la imagen.. NO SE PUEDE EDITAR CON MULTER-->
+        solo se muestra la imagen.. NO SE PUEDE EDITAR CON MULTER-
         <img id="currentImage" src="" alt="imagen actual" width="100px">
         
         <button type="submit"> Actualizar Producto</button>
 
     </form>
 </div>
+
+
+-->
 
     <h2>Lista de Productos</h2>
     <button id="listarProductosBtn"> Listar Todos Los Productos</button>
