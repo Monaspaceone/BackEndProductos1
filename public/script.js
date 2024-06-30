@@ -30,25 +30,25 @@ document.addEventListener('DOMContentLoaded', () =>
         });
 
 
+    
+    //crear Marcas
 
-
-
-    //CREAR USUARIOS NUEVOS
-    crearUsuarioForm.addEventListener('submit', async (e) => 
+    //CREAR PRODUCTOS NUEVOS
+    crearProductoForm.addEventListener('submit', async (e) => 
     {
         e.preventDefault();//evita qaue la pagina se actualice
 
-        const formData = new FormData(crearUsuarioForm);
+        const formData = new FormData(crearProductoForm);
 
         const data = 
         {
             nombre: formData.get('nombre'),
             apellido: formData.get('apellido'),
             mail: formData.get('mail'),
-            archivo: formData.get('archivo')
+            //archivo: formData.get('archivo')
         };
 
-        const response = await fetch('/usuarios',
+        const response = await fetch('/productos',
         {
             method: 'POST',
             body: formData
@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () =>
 
         const result = await response.json();
         alert(result.message);
-        crearUsuarioForm.reset();
-        crearUsuarioForm.classList.add('hidden');
+        crearProductoForm.reset();
+        crearProductoForm.classList.add('hidden');
         listarUsuarios();
     });
 
