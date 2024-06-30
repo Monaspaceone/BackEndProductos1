@@ -14,8 +14,9 @@
         <div class="form-group">
         
             <h2>Formulario de Producto: </h2>
-        
-        <form id="ingresarMarca">
+
+        <button id="mostrarCrearMarcaBtn" > Ingresar Marca</button>
+        <form id="crearMarcaForm" class="hidden" enctype="multipart/form-data" >
             <h2> Marca</h2>
 
                 <label for="nombre">Nombre de la Marca:</label>
@@ -24,18 +25,20 @@
                 <label for="categoria">Categoría:</label>
                 <input type="text" id="categoria" name="categoria" required>
 
-                <button type="submit"> Ingresar Marca</button> 
+                <button type="submit" id="guardarMarca"> Guardar</button> 
          </form>
             
-
+        <!--Desplegar el formulario de creacion de producto-->
          <button id="mostrarCrearProductoFormBtn">Crear Producto</button>
+
+         <!--form para crear el nuevo usuario-->
 
          <form id="crearProductoForm" class="hidden" enctype="multipart/form-data">
 
              <h2>Producto</h2>
              <label for="idMarca">ID de Marca:</label>
              <input type="number" id="IdMarca" name="IdMarca" required>
-             <label for="producyo">Nombre del Producto:</label>
+             <label for="producto">Nombre del Producto:</label>
              <input type="text" id="producto" name="producto" required>
              <label for="descripcion">Descripción:</label>
              <textarea id="descripcion" name="descripcion"></textarea>
@@ -49,8 +52,49 @@
              <label for="precio">Precio Base:</label>
              <input type="number" id="precio" name="precio" step="0.01" required>
              
-             <button id="guardarFormProducto"> Guardar </button>
+             <button type="submit id="guardarFormProducto"> Guardar </button>
          </form>
+
+      
+         <!--FORM PARA EDITAR -->
+    <form id="editarProductoForm" class="hidden" enctype="multipart/form-data">
+        <h2>Editar Producto</h2>
+        <input type="hidden" id="editID" name="editID">
+
+        <label for="editIdMarca">ID Marca</label>
+        <input type="number" id="editIdMarca" name="editIdMarca" required> 
+        <label for="editProducto">Producto: </label>
+        <input type="text" id="editNombre" name="editNombre" required>
+        <label for="editDescripcion">Descripción:</label>
+        <textarea id="editDescripcion" name="editDescripcion"></textarea>
+        <label for="editCategoria">Categoría:</label>
+        <input type="text" id="editCategoria" name="editCategoria" required>
+        <label for="editTemporada">Temporada:</label>
+        <select id="editTemporada" name="editTemporada" required>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+        </select>
+        <label for="editPrecio">Precio Base:</label>
+        <input type="number" id="edirPrecio" name="editPrecio" step="0.01" required>
+        
+        <button type="submit"> Actualizar Usuario</button>
+    </form>
+
+        <!--solo se muestra la imagen.. NO SE PUEDE EDITAR CON MULTER-->
+        <!--<img id="currentImage" src="" alt="imagen actual" width="100px"> -->
+    
+      <!--muestra el listado -->  
+
+      <h2>Lista de Marcas</h2>
+      <button id="listarMarcasBtn"> Listar Todas las Marcas</button>
+      <ul id="listarMarcas">
+      
+      
+        <h2>Lista de Productos</h2>
+        <button id="listarProductosBtn"> Listar Todos Los Productos</button>
+        <ul id="listaProductos">
+    
+        </ul>    
         
     
 <script src="script.js"></script>

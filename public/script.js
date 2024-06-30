@@ -1,19 +1,35 @@
 document.addEventListener('DOMContentLoaded', () =>
 {
-    const mostrarCrearUsuarioFormBtn = document.getElementById('mostrarCrearUsuarioFormBtn');
-    const crearUsuarioForm = document.getElementById('crearUsuarioForm');
-    const editarUsuarioForm = document.getElementById('editarUsuarioForm');
-    const listarUsuariosBtn = document.getElementById('listarUsuariosBtn');
-    const listaUsuarios = document.getElementById('listaUsuarios');
+    //const mostrarCrearUsuarioFormBtn = document.getElementById('mostrarCrearUsuarioFormBtn');
+    const mostrarCrearProductoFormBtn = document.getElementById('mostrarCrearProductoFormBtn');
+    const mostrarCrearMarcaBtn= document.getElementById('mostrarCrearMarcaBtn');
+    const crearProductoForm = document.getElementById('crearProductoForm');
+    const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
+    const editarProductoForm = document.getElementById('editarProductoForm');
+
+    //const listarProductosBtn = document.getElementById('listarProductosBtn');
+    //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
+
+    //const listarProductos = document.getElementById('listarProductos');
+    //const listarMarcas = document.getElementById('listarMarcas');
+
 
     //mostrar imagen de multer
-const currentImage = document.getElementById('currentImage');
+//const currentImage = document.getElementById('currentImage');
 
-
-    mostrarCrearUsuarioFormBtn.addEventListener('click',() =>
+//para que despliegue el form de Crear Producto
+    mostrarCrearProductoFormBtn.addEventListener('click',() =>
     {
-        crearUsuarioForm.classList.toggle('hidden');
+        crearProductoForm.classList.toggle('hidden');
     });
+
+
+    mostrarCrearMarcaBtn.addEventListener('click',() =>
+        {
+            crearMarcaForm.classList.toggle('hidden');
+        });
+
+
 
 
 

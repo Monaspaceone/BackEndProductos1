@@ -3,10 +3,11 @@ let port = 3000;
 const express = require('express');
 const app = express();
 const path = require('path');
-const usuariosRouter = require('./routes/usuarios');
+//const usuariosRouter = require('./routes/usuarios');
+const usuariosRouter = require('./routes/productos');
 
 app.use(express.json());
-app.use('/usuarios',usuariosRouter);
+app.use('/productos',productosRouter);
 app.use(express.static(path.join(__dirname,'public')));
 
 
