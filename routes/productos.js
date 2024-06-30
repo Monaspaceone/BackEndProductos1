@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-const userController = require('../controller/userController');
+const productController = require('../controller/productController');
 
 
-router.get('/', userController.ObtenerTodosLosUsuarios);
-router.get('/:id', userController.ObtenerUsuarioPorId);
+router.get('/', productController.ObtenerTodosLosProductos);
+router.get('/:id', productController.ObtenerProductoPorId);
 
-//SOLO SE PUEDEN CREAR USUARIOS CON MULTER //ES MAS COMPLICADO editar las imagenes
-router.post('/',userController.upload.single('archivo'),userController.crearUsuario);
+//SOLO SE PUEDEN CREAR PRODUCTOS CON MULTER //ES MAS COMPLICADO editar las imagenes
+//router.post('/',productController.upload.single('archivo'),productController.crearProducto);
+router.post('/', productController.crearProducto);
 
-
-router.put('/:id', userController.ActualizarUsuario);
-router.delete('/:id',userController.BorrarUsuario);
+router.put('/:id', productController.ActualizarProducto);
+router.delete('/:id',productController.BorrarProducto);
 
 
 module.exports = router;
