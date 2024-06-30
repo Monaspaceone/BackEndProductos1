@@ -1,13 +1,13 @@
 const db = require('../db/db');
 
 //ACTUALIZACIÓN CON MULTER Y CARPETA PUBLIC (en la base de datos se guarda el path)
-//const multer = require('multer');
+const multer = require('multer');
 const path = require('path');
 
 
 //subir archivos
 
-/*const storage = multer.diskStorage(
+const storage = multer.diskStorage(
     {
         destination: function (req,file,cb){
             cb(null,'uploads/');//Indica la carpeta donde se guardaran los archivos
@@ -43,92 +43,104 @@ const path = require('path');
 
     });
 
-    const upload = multer({storage: storage});*/
+    const upload = multer({storage: storage});
 
 
 
 
 const ObtenerTodosLosProductos = (req,res) => 
 {
-    const sql = 'SELECT * FROM Productos';
+    const sql = 'SELECT Products1.idProduct as id,' & 
+                       'Products1.productName as Nombre,' &
+                       'Products1.productName as Nombre,' &
+                       'Products1.descripcion as Descripcion,' &
+                       'Products1.temporada as Temporada,' &
+                       'Products1.basePrice as Precio,' &
+                       'Marca.nombre AS Marca' &
+                'FROM Products1, Marca' &
+                'WHERE Products1.idMarca = Marca.idMarca';
 
     db.query(sql, (err,result) => 
     {
-        if(err) 
-            throw err;
+        if(err) throw err;
 
         res.json(result);
     });
 }
 
 
-const ObtenerProductoPorId = (req, res) =>{
+const ObtenerUsuarioPorId = (req, res) =>{
     const {id} = req.params;
-    const sql = 'SELECT * FROM Productos WHERE idProducto = ?';
+    const sql = 'SELECT Products1.idProduct as id,' & 
+                       'Products1.productName as Nombre,' &
+                       'Products1.descripcion as Descripcion,' &
+                       'Products1.temporada as Temporada,' &
+                       'Products1.basePrice as Precio,' &
+                       'Marca.nombre AS Marca' &
+                'FROM Products1, Marca' &
+                'WHERE Products1.idMarca = Marca.idMarca AND Products1.idProduct = ?';
 
     db.query(sql,[id], (err,result) =>
     {
         if(err) throw err;        
         res.json(result);
     });
-}
+};
 
 
 //ESTO SI ES NECESARIO EDITAR CON MULTER
 
-const crearProducto = (req, res) =>
-    {
-    const {idmarca,producto,descripcion,categoria,temporada,precio} = req.body;
-    //const archivo = req.file? req.file.filename: null;//Obtener el nombre del archivo guardado
+const crearProducto = (req, res) =>{
+    const {nombre,apellido,mail} = req.body;
+    const archivo = req.file? req.file.filename: null;//Obtener el nombre del archivo guardado
 
     //Crea un registro en la base Productos
-    const sql = 'INSERT INTO productos (idmarca, producto, descripcion, categoria, temporada, precio) VALUES (?,?,?,?,?,?)';
+    const sql1 = 'INSERT INTO Products1 (idMarca, productName, descripcion, temporada, basePrice) VALUES (?,?,?,?,?)';
 
  //   'INSERT INTO usuarios (nombre,apellido,mail, ruta_archivo) VALUES (?,?,?,?)';
 
 
- //   db.query(sql,[nombre,descripcion,categoria,temporada,precio,archivo], (err,result) =>
-    db.query(sql,[idmarca,producto,descripcion,categoria,temporada,precio], (err,result) =>
+    db.query(sql1,[nombre,apellido,mail,archivo], (err,result) =>
     {
-        if (err) throw err;
+        if(err) throw err;
 
-        res.json(
-            {
-                mensaje : "Producto Creado exitosamente",
-                idProducto: result.insertId
+
+        res.json({
+            message : 'Producto Creado exitosamente',
+            idProducto: result.insertId
             });
     });
-}
+};
 
 
 
 
 
 
-const ActualizarProducto = (req, res) =>{
+const ActualizarUsuario = (req, res) =>{
     const {id} = req.params;
-    const {idmarca,nombre,descripcion,categoria,temporada,precio} = req.body;
+    const {nombre,apellido,mail} = req.body;
 
 
-    const sql = 'UPDATE Productos SET idmarca = ?, producto = ?, descripcion = ?, categoria = ?, temporada = ?, precio = ? WHERE id = ?';
-    db.query(sql,[idmarca,nombre,descripcion,categoria,temporada,precio,id], (err,result) =>
+    const sql = 'UPDATE usuarios SET nombre = ?, apellido = ?, mail = ? WHERE id = ?';
+    db.query(sql,[nombre,apellido,mail,id], (err,result) =>
     {
         if(err) throw err;
 
 
         res.json(
             {
-                message : 'Producto editado exitosamente'
+                message : 'Usuario editado'
             });
     });
 
 
-}
+};
 
 
-const BorrarProducto = (req, res) =>{
+const BorrarUsuario = (req, res) =>{
     const {id} = req.params;
-    const sql  = 'DELETE FROM productos WHERE id= ?';
+    const sql  = 'DELETE FROM usuarios WHERE id= ?';
     db.query(sql,[id],(err,result) =>
     {
         if(err) throw err;
@@ -136,7 +148,7 @@ const BorrarProducto = (req, res) =>{
 
         res.json(
             {
-                message: 'Producto eliminado'
+                message: 'Usuario eliminado'
             });
     });
 };
@@ -144,10 +156,10 @@ const BorrarProducto = (req, res) =>{
 //aqui tambien agrego multer para exportar el modulo UPLOAD
 module.exports = 
 {
-    ObtenerTodosLosProductos,
-    ObtenerProductoPorId,
-    crearProducto,
-    ActualizarProducto,
-    BorrarProducto,
-    //upload
+    ObtenerTodosLosUsuarios,
+    ObtenerUsuarioPorId,
+    crearUsuario,
+    ActualizarUsuario,
+    BorrarUsuario,
+    upload
 }
