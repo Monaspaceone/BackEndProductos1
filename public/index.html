@@ -7,9 +7,9 @@
     </head>
     <body>
      
-    <h1>Base de Datos: Productos</h1>
+    <h1 class="tituloPrincipal">Base de Datos: Productos</h1>
    
-         <div class="form-group">
+     <div class="form-group">
         
     <h2>Formulario de Producto: </h2>
         
@@ -36,7 +36,7 @@
              <label for="idMarca">ID de Marca:</label>
              <select id="idMarca" name="idMarca" required>
                 <option value="1">Adidas</option>
-                <option value="2">Nike/option>
+                <option value="2">Nike</option>
                 <option value="3">H&H</option>
                 <option value="4">Puma</option>
                 <option value="5">Zara</option>
@@ -44,9 +44,18 @@
 
              <label for="producto">Nombre del Producto:</label>
              <input type="text" id="producto" name="producto" required>
+
              <label for="descripcion">Descripción:</label>
              <textarea id="descripcion" name="descripcion"></textarea>
 
+             <label for="categoria">Descripción:</label>
+             <textarea id="categoria" name="categoria"></textarea>
+
+             <label for="editTemporada">Temporada:</label>
+             <select id="Temporada" name="Temporada" required>
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+            </select>
 
              <label for="precio">Precio Base:</label>
              <input type="number" id="precio" name="precio" step="0.01" required>
@@ -66,10 +75,13 @@
 
         <label for="editProducto">Producto: </label>
         <input type="text" id="editNombre" name="editNombre" required>
+
         <label for="editDescripcion">Descripción:</label>
         <textarea id="editDescripcion" name="editDescripcion"></textarea>
+
         <label for="editCategoria">Categoría:</label>
         <input type="text" id="editCategoria" name="editCategoria" required>
+
         <label for="editTemporada">Temporada:</label>
         <select id="editTemporada" name="editTemporada" required>
             <option value="1">Sí</option>

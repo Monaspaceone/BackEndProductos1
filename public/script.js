@@ -4,20 +4,19 @@ document.addEventListener('DOMContentLoaded', () =>
     const mostrarCrearProductoFormBtn = document.getElementById('mostrarCrearProductoFormBtn');
     const mostrarCrearMarcaBtn= document.getElementById('mostrarCrearMarcaBtn');
     const crearProductoForm = document.getElementById('crearProductoForm');
-    const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
-    //const editarProductoForm = document.getElementById('editarProductoForm');
-    //const listarProductosBtn = document.getElementById('listarProductosBtn');
+    //const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
+    const editarProductoForm = document.getElementById('editarProductoForm');
+    const listarProductosBtn = document.getElementById('listarProductosBtn');
     //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
 
     const listarProductos = document.getElementById('listarProductos');
     //const listarMarcas = document.getElementById('listarMarcas');
 
 
-    //mostrar imagen de multer
-//const currentImage = document.getElementById('currentImage');
-
 //para que despliegue el form de Crear Producto
-    mostrarCrearProductoFormBtn.addEventListener('click',() =>
+      
+
+   mostrarCrearProductoFormBtn.addEventListener('click',() =>
     {
         crearProductoForm.classList.toggle('hidden');
     });
@@ -28,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () =>
             crearMarcaForm.classList.toggle('hidden');
         });
 
-    }
-    /*
+    
+    
     //crear Marcas
-    crearMarcaForm.addEventListener('submit', async (e) => 
+    /*crearMarcaForm.addEventListener('submit', async (e) => 
         {
             e.preventDefault();//evita qaue la pagina se actualice
     
@@ -40,12 +39,11 @@ document.addEventListener('DOMContentLoaded', () =>
             const data = 
             {
                 nombre: formData.get('nombre'),
-                apellido: formData.get('apellido'),
-                mail: formData.get('mail'),
-                //archivo: formData.get('archivo')
+                categoria: formData.get('categoria'),
+        
             };
     
-            const response = await fetch('/productos',
+            const response = await fetch('/marcas',
             {
                 method: 'POST',
                 body: formData
@@ -57,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () =>
             crearProductoForm.classList.add('hidden');
             listarUsuarios();
         });
+          */
+        
     //CREAR PRODUCTOS NUEVOS
     crearProductoForm.addEventListener('submit', async (e) => 
     {
@@ -66,11 +66,13 @@ document.addEventListener('DOMContentLoaded', () =>
   //cuando hago un get recibo un json 
         const data = 
         {
+            idMarca: formData.get('idMarca'),
             producto: formData.get('producto'),
             descripcion: formData.get('descripcion'),
-            categoria: formData.Dataget('categoria'),
+            categoria: formData.get('categoria'),
+            temporada: formData.get('temporada'),
             precio: formData.get('precio'),
-            //archivo: formData.get('archivo')
+        
         };
 
         const response = await fetch('/productos',
@@ -106,9 +108,11 @@ document.addEventListener('DOMContentLoaded', () =>
         const data = 
         {
             //que onda el id de marca
+            idMarca: formData.get ('editIdMarca'),
             producto: formData.get('editProducto'),
             descripcion: formData.get('editDescripcion'),
-            categoria: formData.get (editCategoria),
+            categoria: formData.get ('editCategoria'),
+            editTemporada: formData.get ('editTemporada'),
             precio: formData.get('editPrecio')
         };
 
@@ -126,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () =>
         alert(result.message);
         editarUsuarioForm.reset();
         editarUsuarioForm.classList.add('hidden');
-        listarUsuarios();
+        listarProductos();
 
     });
 
@@ -142,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () =>
         const response = await fetch('/productos');
         const productos = await response.json();
 
-        listaUsuarios.innerHTML = ''; //limpiar la lista , y le vuelvo a pasar los datos
+        listaProductos.innerHTML = ''; //limpiar la lista , y le vuelvo a pasar los datos
 
         productos.forEach(producto => 
             {
@@ -152,11 +156,11 @@ document.addEventListener('DOMContentLoaded', () =>
  ///voy a guardar en un json
 
                 li.innerHTML = `
-                    <span> ID: ${producto.id}, IDMarca ${producto.idMarca}, Producto: ${producto.producto}, Descripcion: ${producto.descripcion}, Categoria: ${producto.categoria}, Precio : ${producto.precio}  </span>
+                    <span> ID: ${producto.id}, IDMarca ${producto.idMarca}, Producto: ${producto.producto}, Descripcion: ${producto.descripcion}, Categoria: ${producto.categoria}, Temporada: ${producto.temporada}, Precio : ${producto.precio}  </span>
                     
                     
                     <div class="actions"> 
-                        <button class="update" data-id= "${producto.id}", data-idMarca"${producto.idMarca}", data-producto="${producto.producto}", data-categoria="${producto.categoria}", data-descripcion="${producto.descripcion}" data-precio="${usuario.precio}"> Actualizar </button>
+                        <button class="update" data-id= "${producto.id}", data-idMarca"${producto.idMarca}", data-producto="${producto.producto}", data-categoria="${producto.categoria}", data-descripcion="${producto.descripcion}",data-temporada="${producto.temporada}" , data-precio="${usuario.precio}"> Actualizar </button>
                
                         <button class="delete" data-id="${producto.id}"> Eliminar </button>
                     </div>
@@ -171,21 +175,22 @@ document.addEventListener('DOMContentLoaded', () =>
                     button.addEventListener('click', (e) => 
                     {
                         const id = e.target.getAttribute('data-id');
-                        //const idMarca= e.target.getAttribute('data-idMarca');
+                        const idMarca= e.target.getAttribute('data-idMarca');
                         const producto = e.target.getAttribute('data-producto');
                         const descripcion = e.target.getAttribute('data-descripcion');
                         const categoria = e.target.getAttribute('data-categoria');
+                        const temporada = e.target.getAttribute('data-temporada');
                         const precio = e.target.getAttribute('data-precio');
-                        //const imagen = e.target.getAttribute('data-image');
-
+                        
 
                         document.getElementById('editID').value = id;
-                        //id marca??
+                        document.getElementById('editIdMarca').value = idMarca;
                         document.getElementById('editProducto').value = producto;
                         document.getElementById('editDescripcion').value = descripcion;
-                        document.getElementById('editCategoria').value = Categoria;
+                        document.getElementById('editCategoria').value = categoria;
+                        document.getElementById('editCategoria').value = temporada;
                         document.getElementById('editPrecio').value = precio;
-                        //currentImage.src = imagen;
+                       
 
 
 
