@@ -5,12 +5,11 @@ document.addEventListener('DOMContentLoaded', () =>
     const mostrarCrearMarcaBtn= document.getElementById('mostrarCrearMarcaBtn');
     const crearProductoForm = document.getElementById('crearProductoForm');
     const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
-    const editarProductoForm = document.getElementById('editarProductoForm');
-
+    //const editarProductoForm = document.getElementById('editarProductoForm');
     //const listarProductosBtn = document.getElementById('listarProductosBtn');
     //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
 
-    //const listarProductos = document.getElementById('listarProductos');
+    const listarProductos = document.getElementById('listarProductos');
     //const listarMarcas = document.getElementById('listarMarcas');
 
 
@@ -32,19 +31,45 @@ document.addEventListener('DOMContentLoaded', () =>
 
     
     //crear Marcas
-
+    crearMarcaForm.addEventListener('submit', async (e) => 
+        {
+            e.preventDefault();//evita qaue la pagina se actualice
+    
+            const formData = new FormData(crearMarcaForm);
+    
+            const data = 
+            {
+                nombre: formData.get('nombre'),
+                apellido: formData.get('apellido'),
+                mail: formData.get('mail'),
+                //archivo: formData.get('archivo')
+            };
+    
+            const response = await fetch('/productos',
+            {
+                method: 'POST',
+                body: formData
+            });
+    
+            const result = await response.json();
+            alert(result.message);
+            crearProductoForm.reset();
+            crearProductoForm.classList.add('hidden');
+            listarUsuarios();
+        });
     //CREAR PRODUCTOS NUEVOS
     crearProductoForm.addEventListener('submit', async (e) => 
     {
         e.preventDefault();//evita qaue la pagina se actualice
 
-        const formData = new FormData(crearProductoForm);
-
+        const formData = new FormData(crearProductoForm); // guarda los datos del formulario
+  //cuando hago un get recibo un json 
         const data = 
         {
-            nombre: formData.get('nombre'),
-            apellido: formData.get('apellido'),
-            mail: formData.get('mail'),
+            producto: formData.get('producto'),
+            descripcion: formData.get('descripcion'),
+            categoria: formData.Dataget('categoria'),
+            precio: formData.get('precio'),
             //archivo: formData.get('archivo')
         };
 
@@ -52,32 +77,42 @@ document.addEventListener('DOMContentLoaded', () =>
         {
             method: 'POST',
             body: formData
+         //en la clase puso algo distiendo
+         // method: 'post',
+         //headers: {
+           // 'content-type': 'application/json'
+           //}, body: json.stringgify(data)
+         
+
+
         });
 
         const result = await response.json();
         alert(result.message);
-        crearProductoForm.reset();
+        crearProductoForm.reset(); 
         crearProductoForm.classList.add('hidden');
-        listarUsuarios();
+        listarProductos();
     });
 
 
     //EDITAR USUARIO
-    editarUsuarioForm.addEventListener('submit', async(e) => 
+    editarProductoForm.addEventListener('submit', async(e) => 
     {   
         e.preventDefault();
-        const formData = new FormData(editarUsuarioForm);
+        const formData = new FormData(editarProductoForm);
 
         const id = formData.get('editID');
         
         const data = 
         {
-            nombre: formData.get('editNombre'),
-            apellido: formData.get('editApellido'),
-            mail: formData.get('editMail')
+            //que onda el id de marca
+            producto: formData.get('editProducto'),
+            descripcion: formData.get('editDescripcion'),
+            categoria: formData.get (editCategoria),
+            precio: formData.get('editPrecio')
         };
 
-        const response = await fetch(`/usuarios/${id}`,
+        const response = await fetch(`/productos/${id}`,
         {
             method: 'PUT',
             headers: 
@@ -100,34 +135,34 @@ document.addEventListener('DOMContentLoaded', () =>
 
 
     //listar todos los usuarios
-    listarUsuariosBtn.addEventListener('click', listarUsuarios);
+    listarProductosBtn.addEventListener('click', listarProductos);
 
-    async function listarUsuarios()
+    async function listarProductos()
     {
-        const response = await fetch('/usuarios');
-        const usuarios = await response.json();
+        const response = await fetch('/productos');
+        const productos = await response.json();
 
-        listaUsuarios.innerHTML = '';
+        listaUsuarios.innerHTML = ''; //limpiar la lista , y le vuelvo a pasar los datos
 
-        usuarios.forEach(usuario => 
+        productos.forEach(producto => 
             {
                 const li = document.createElement('li');
 
-                const imageSrc = usuario.ruta_archivo ? `/uploads/${usuario.ruta_archivo}` :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBbNf8tPjjMylsbREVGlN1Dj30k5_JVDZOg&s';
-
+                //const imageSrc = producto.ruta_archivo ? `/uploads/${usuario.ruta_archivo}` :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBbNf8tPjjMylsbREVGlN1Dj30k5_JVDZOg&s';
+ ///voy a guardar en un json
 
                 li.innerHTML = `
-                    <span> ID: ${usuario.id}, Nombre: ${usuario.nombre}, Apellido: ${usuario.apellido}, Email: ${usuario.mail}  </span>
-                    <img src="${imageSrc}" alt="Img de perfil" width="20px">
+                    <span> ID: ${producto.id}, IDMarca ${producto.idMarca}, Producto: ${producto.producto}, Descripcion: ${producto.descripcion}, Categoria: ${producto.categoria}, Precio : ${producto.precio}  </span>
+                    
                     
                     <div class="actions"> 
-                        <button class="update" data-id= "${usuario.id}" data-nombre="${usuario.nombre}" data-apellido="${usuario.apellido}" data-mail="${usuario.mail}" data-image="${imageSrc}"> Actualizar </button>
-                    
-                        <button class="delete" data-id="${usuario.id}"> Eliminar </button>
+                        <button class="update" data-id= "${producto.id}", data-idMarca"${producto.idMarca}", data-producto="${producto.producto}", data-categoria="${producto.categoria}", data-descripcion="${producto.descripcion}" data-precio="${usuario.precio}"> Actualizar </button>
+               
+                        <button class="delete" data-id="${producto.id}"> Eliminar </button>
                     </div>
                 
                 `;
-                listaUsuarios.appendChild(li);
+                listaProducto.appendChild(li);
             });
 
             //ACTUALIZAR USUARIO
@@ -136,21 +171,25 @@ document.addEventListener('DOMContentLoaded', () =>
                     button.addEventListener('click', (e) => 
                     {
                         const id = e.target.getAttribute('data-id');
-                        const nombre = e.target.getAttribute('data-nombre');
-                        const apellido = e.target.getAttribute('data-apellido');
-                        const mail = e.target.getAttribute('data-mail');
-                        const imagen = e.target.getAttribute('data-image');
+                        //const idMarca= e.target.getAttribute('data-idMarca');
+                        const producto = e.target.getAttribute('data-producto');
+                        const descripcion = e.target.getAttribute('data-descripcion');
+                        const categoria = e.target.getAttribute('data-categoria');
+                        const precio = e.target.getAttribute('data-precio');
+                        //const imagen = e.target.getAttribute('data-image');
 
 
                         document.getElementById('editID').value = id;
-                        document.getElementById('editNombre').value = nombre;
-                        document.getElementById('editApellido').value = apellido;
-                        document.getElementById('editMail').value = mail;
-                        currentImage.src = imagen;
+                        //id marca??
+                        document.getElementById('editProducto').value = producto;
+                        document.getElementById('editDescripcion').value = descripcion;
+                        document.getElementById('editCategoria').value = Categoria;
+                        document.getElementById('editPrecio').value = precio;
+                        //currentImage.src = imagen;
 
 
 
-                        editarUsuarioForm.classList.remove('hidden');
+                        editarProductoForm.classList.remove('hidden');
                     });
                 });
 
@@ -160,14 +199,14 @@ document.addEventListener('DOMContentLoaded', () =>
                         button.addEventListener('click', async (e) =>
                         {
                             const id = e.target.getAttribute('data-id');
-                            const response = await fetch(`/usuarios/${id}`,
+                            const response = await fetch(`/productos/${id}`,
                             {
                                 method: 'DELETE'
                             });
 
                             const result = await response.json();
                             alert(result.message);
-                            listarUsuarios();
+                            listarProductos();
 
                         });
 

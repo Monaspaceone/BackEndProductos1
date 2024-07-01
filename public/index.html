@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
-   
+     
+    <h1>Base de Datos: Productos</h1>
    
          <div class="form-group">
         
@@ -35,8 +36,8 @@
              <h2>Producto</h2>
              <label for="idMarca">ID de Marca:</label>
              <input type="number" id="IdMarca" name="IdMarca" required>
-             <label for="producyo">Nombre del Producto:</label>
              <label for="producto">Nombre del Producto:</label>
+            
              <input type="text" id="producto" name="producto" required>
              <label for="descripcion">Descripción:</label>
              <textarea id="descripcion" name="descripcion"></textarea>
@@ -74,20 +75,20 @@
         <button type="submit"> Actualizar Usuario</button>
     </form>
 
-        <!--solo se muestra la imagen.. NO SE PUEDE EDITAR CON MULTER-->
-        <!--<img id="currentImage" src="" alt="imagen actual" width="100px"> -->
     
       <!--muestra el listado -->  
 
       <h2>Lista de Marcas</h2>
-      <button id="listarMarcasBtn"> Listar Todas las Marcas</button>
+      <button id="listarMarcasBtn"> Listar Marcas</button>
       <ul id="listarMarcas"></ul>
       
-        <h2>Lista de Marcas</h2>
-        <button id="listarProductosBtn"> Listar Todas las Marcas</button>
-        <ul id="listarProductos">
-    
-<script src="script.js"></script>
+        <h2>Lista de Productos</h2>
+        <button id="listarProductosBtn"> Listar Productos</button>
 
-        </body> 
+
+        <ul id="listarProductos"></ul>
+    
+     <script src="script.js"></script>
+
+    </body> 
 </html>
