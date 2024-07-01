@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () =>
 {
-    //const mostrarCrearUsuarioFormBtn = document.getElementById('mostrarCrearUsuarioFormBtn');
+  
     const mostrarCrearProductoFormBtn = document.getElementById('mostrarCrearProductoFormBtn');
     const mostrarCrearMarcaBtn= document.getElementById('mostrarCrearMarcaBtn');
     const crearProductoForm = document.getElementById('crearProductoForm');
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () =>
             crearMarcaForm.classList.toggle('hidden');
         });
 
-
-    
+    }
+    /*
     //crear Marcas
     crearMarcaForm.addEventListener('submit', async (e) => 
         {
