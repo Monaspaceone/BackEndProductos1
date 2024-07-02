@@ -110,7 +110,7 @@ const ActualizarProducto = (req, res) =>{
     const {idMarca,nombre,descripcion,categoria,temporada,precio} = req.body;
 
 
-    const sql = 'UPDATE Productos SET idmarca = ?, producto = ?, descripcion = ?, categoria = ?, temporada = ?, precio = ? WHERE id = ?';
+    const sql = 'UPDATE Productos SET idMarca = ?, producto = ?, descripcion = ?, categoria = ?, temporada = ?, precio = ? WHERE id = ?';
     db.query(sql,[idMarca,nombre,descripcion,categoria,temporada,precio,id], (err,result) =>
     {
         if(err) throw err;
