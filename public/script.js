@@ -4,18 +4,17 @@ document.addEventListener('DOMContentLoaded', () =>
     const mostrarCrearProductoFormBtn = document.getElementById('mostrarCrearProductoFormBtn');
     const mostrarCrearMarcaBtn= document.getElementById('mostrarCrearMarcaBtn');
     const crearProductoForm = document.getElementById('crearProductoForm');
-    //const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
+    const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
     const editarProductoForm = document.getElementById('editarProductoForm');
     const listarProductosBtn = document.getElementById('listarProductosBtn');
-    //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
-
+    const listarMarcasBtn = document.getElementById('listarMarcasBtn');
     const listarProductos = document.getElementById('listarProductos');
-    //const listarMarcas = document.getElementById('listarMarcas');
+    const listarMarcas = document.getElementById('listarMarcas');
+    const idMarcaSelect = document.getElementById('idMarca');
 
 
 //para que despliegue el form de Crear Producto
       
-
    mostrarCrearProductoFormBtn.addEventListener('click',() =>
     {
         crearProductoForm.classList.toggle('hidden');
@@ -79,14 +78,7 @@ document.addEventListener('DOMContentLoaded', () =>
         {
             method: 'POST',
             body: formData
-         //en la clase puso algo distiendo
-         // method: 'post',
-         //headers: {
-           // 'content-type': 'application/json'
-           //}, body: json.stringgify(data)
-         
-
-
+        
         });
 
         const result = await response.json();
@@ -140,6 +132,9 @@ document.addEventListener('DOMContentLoaded', () =>
 
     //listar todos los usuarios
     listarProductosBtn.addEventListener('click', listarProductos);
+    listarMarcasBtn.addEventListener('click', listarMarcas);
+
+
 
     async function listarProductos()
     {
@@ -152,15 +147,12 @@ document.addEventListener('DOMContentLoaded', () =>
             {
                 const li = document.createElement('li');
 
-                //const imageSrc = producto.ruta_archivo ? `/uploads/${usuario.ruta_archivo}` :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBbNf8tPjjMylsbREVGlN1Dj30k5_JVDZOg&s';
- ///voy a guardar en un json
-
                 li.innerHTML = `
                     <span> ID: ${producto.id}, IDMarca ${producto.idMarca}, Producto: ${producto.producto}, Descripcion: ${producto.descripcion}, Categoria: ${producto.categoria}, Temporada: ${producto.temporada}, Precio : ${producto.precio}  </span>
                     
                     
                     <div class="actions"> 
-                        <button class="update" data-id= "${producto.id}", data-idMarca"${producto.idMarca}", data-producto="${producto.producto}", data-categoria="${producto.categoria}", data-descripcion="${producto.descripcion}",data-temporada="${producto.temporada}" , data-precio="${usuario.precio}"> Actualizar </button>
+                        <button class="update" data-id= "${producto.id}", data-idMarca"${producto.idMarca}", data-producto="${producto.producto}", data-categoria="${producto.categoria}", data-descripcion="${producto.descripcion}",data-temporada="${producto.temporada}" , data-precio="${producto.precio}"> Actualizar </button>
                
                         <button class="delete" data-id="${producto.id}"> Eliminar </button>
                     </div>
@@ -188,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () =>
                         document.getElementById('editProducto').value = producto;
                         document.getElementById('editDescripcion').value = descripcion;
                         document.getElementById('editCategoria').value = categoria;
-                        document.getElementById('editCategoria').value = temporada;
+                        document.getElementById('editTemporada').value = temporada;
                         document.getElementById('editPrecio').value = precio;
                        
 
@@ -220,5 +212,42 @@ document.addEventListener('DOMContentLoaded', () =>
 
     }
 
+/*
+
+async function listarMarcas() {
+        const response = await fetch('/marcas');
+        const marcas = await response.json();
+
+        listarMarcas.innerHTML = '';
+
+        marcas.forEach(marca => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${marca.id}, Nombre: ${marca.nombre}, Categoría: ${marca.categoria}`;
+            listarMarcas.appendChild(li);
+        });
+    }
+
+    async function cargarMarcas() {
+        const response = await fetch('/marcas');
+        const marcas = await response.json();
+
+        idMarcaSelect.innerHTML = '';
+
+        marcas.forEach(marca => {
+            const option = document.createElement('option');
+            option.value = marca.id;
+            option.textContent = marca.nombre;
+            idMarcaSelect.appendChild(option);
+        });
+    }
+});
+
+
+
+
+
+
+
+*/
 
 });
