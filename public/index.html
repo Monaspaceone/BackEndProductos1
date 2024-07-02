@@ -14,14 +14,17 @@
     <h2>Formulario de Producto: </h2>
         
      <button id="mostrarCrearMarcaBtn" > Ingresar Marca</button>
-        
         <form id="crearMarcaForm" class="hidden" enctype="multipart/form-data" >
             <h2> Marca</h2>
 
                 <label for="nombre">Nombre de la Marca:</label>
                 <input type="text" id="nombre" name="nombre" required>
+
                 <label for="categoria">Categoría:</label>
                 <input type="text" id="categoria" name="categoria" required>
+
+                
+
                 <button type="submit" id="guardarMarca"> Guardar</button> 
          </form>
         
@@ -35,11 +38,7 @@
              <h2>Producto</h2>
              <label for="idMarca">ID de Marca:</label>
              <select id="idMarca" name="idMarca" required>
-                <option value="1">Adidas</option>
-                <option value="2">Nike</option>
-                <option value="3">H&H</option>
-                <option value="4">Puma</option>
-                <option value="5">Zara</option>
+                <!--esto tendria que llenarse con js-->
                 </select>
 
              <label for="producto">Nombre del Producto:</label>

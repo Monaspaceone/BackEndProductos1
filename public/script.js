@@ -7,10 +7,32 @@ document.addEventListener('DOMContentLoaded', () =>
     const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
     const editarProductoForm = document.getElementById('editarProductoForm');
     const listarProductosBtn = document.getElementById('listarProductosBtn');
-    const listarMarcasBtn = document.getElementById('listarMarcasBtn');
-    const listarProductos = document.getElementById('listarProductos');
-    const listarMarcas = document.getElementById('listarMarcas');
+   //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
+   
+   // esta es la constante que hace que no se despliegen los form
+   // const listarProductos = document.getElementById('listarProductos');
+    //const listarMarcas = document.getElementById('listarMarcas');
     const idMarcaSelect = document.getElementById('idMarca');
+
+
+
+    async function cargarMarcas() {
+        try {
+            const response = await fetch('/marcas');
+            const marcas = await response.json();
+
+            idMarcaSelect.innerHTML = '';
+
+            marcas.forEach(marca => {
+                const option = document.createElement('option');
+                option.value = marca.id;
+                option.textContent = marca.nombre;
+                idMarcaSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error al cargar las marcas:', error);
+        }
+    }
 
 
 //para que despliegue el form de Crear Producto
@@ -29,32 +51,37 @@ document.addEventListener('DOMContentLoaded', () =>
     
     
     //crear Marcas
-    /*crearMarcaForm.addEventListener('submit', async (e) => 
-        {
-            e.preventDefault();//evita qaue la pagina se actualice
-    
-            const formData = new FormData(crearMarcaForm);
-    
-            const data = 
-            {
-                nombre: formData.get('nombre'),
-                categoria: formData.get('categoria'),
-        
-            };
-    
-            const response = await fetch('/marcas',
-            {
-                method: 'POST',
-                body: formData
-            });
-    
-            const result = await response.json();
-            alert(result.message);
-            crearProductoForm.reset();
-            crearProductoForm.classList.add('hidden');
-            listarUsuarios();
+
+
+    crearMarcaForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(crearMarcaForm);
+
+        const data = {
+            nombre: formData.get('nombre'),
+            categoria: formData.get('categoria')
+        };
+
+        const response = await fetch('/marcas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
-          */
+
+        const result = await response.json();
+        alert(result.message);
+        crearMarcaForm.reset();
+        crearMarcaForm.classList.add('hidden');
+        cargarMarcas(); // Actualizar el menú desplegable de marcas
+        listarMarcas(); // Actualizar la lista de marcas
+    });
+
+
+
+
         
     //CREAR PRODUCTOS NUEVOS
     crearProductoForm.addEventListener('submit', async (e) => 
@@ -132,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
     //listar todos los usuarios
     listarProductosBtn.addEventListener('click', listarProductos);
-    listarMarcasBtn.addEventListener('click', listarMarcas);
+    //listarMarcasBtn.addEventListener('click', listarMarcas);
 
 
 
@@ -211,6 +238,24 @@ document.addEventListener('DOMContentLoaded', () =>
 
 
     }
+
+
+    listarMarcasBtn.addEventListener('click', listarMarcas);
+
+    async function listarMarcas() {
+        const response = await fetch('/api/marcas');
+        const marcas = await response.json();
+
+        listaMarcas.innerHTML = '';
+
+        marcas.forEach(marca => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${marca.id}, Nombre: ${marca.nombre}, Categoría: ${marca.categoria}`;
+            listaMarcas.appendChild(li);
+        });
+    }
+
+
 
 /*
 

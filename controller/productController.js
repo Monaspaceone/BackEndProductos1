@@ -78,17 +78,17 @@ const ObtenerProductoPorId = (req, res) =>{
 
 const crearProducto = (req, res) =>
     {
-    const {idmarca,producto,descripcion,categoria,temporada,precio} = req.body;
+    const {idMarca,producto,descripcion,categoria,temporada,precio} = req.body;
     //const archivo = req.file? req.file.filename: null;//Obtener el nombre del archivo guardado
 
     //Crea un registro en la base Productos
-    const sql = 'INSERT INTO productos (idmarca, producto, descripcion, categoria, temporada, precio) VALUES (?,?,?,?,?,?)';
+    const sql = 'INSERT INTO productos (idMarca, producto, descripcion, categoria, temporada, precio) VALUES (?,?,?,?,?,?)';
 
  //   'INSERT INTO usuarios (nombre,apellido,mail, ruta_archivo) VALUES (?,?,?,?)';
 
 
  //   db.query(sql,[nombre,descripcion,categoria,temporada,precio,archivo], (err,result) =>
-    db.query(sql,[idmarca,producto,descripcion,categoria,temporada,precio], (err,result) =>
+    db.query(sql,[idMarca,producto,descripcion,categoria,temporada,precio], (err,result) =>
     {
         if (err) throw err;
 
@@ -107,11 +107,11 @@ const crearProducto = (req, res) =>
 
 const ActualizarProducto = (req, res) =>{
     const {id} = req.params;
-    const {idmarca,nombre,descripcion,categoria,temporada,precio} = req.body;
+    const {idMarca,nombre,descripcion,categoria,temporada,precio} = req.body;
 
 
     const sql = 'UPDATE Productos SET idmarca = ?, producto = ?, descripcion = ?, categoria = ?, temporada = ?, precio = ? WHERE id = ?';
-    db.query(sql,[idmarca,nombre,descripcion,categoria,temporada,precio,id], (err,result) =>
+    db.query(sql,[idMarca,nombre,descripcion,categoria,temporada,precio,id], (err,result) =>
     {
         if(err) throw err;
 
@@ -141,6 +141,58 @@ const BorrarProducto = (req, res) =>{
     });
 };
 
+
+
+
+const crearMarca = (req, res) =>
+    {
+    const {nombre, categoria} = req.body;
+    //const archivo = req.file? req.file.filename: null;//Obtener el nombre del archivo guardado
+
+    
+    const sql = 'INSERT INTO productos (nombre, categoria) VALUES (?,?,?,?,?,?)';
+ 
+    db.query(sql,[nombre, categoria], (err,result) =>
+    {
+        if (err) throw err;
+
+        res.json(
+            {
+                mensaje : "Marca Creada exitosamente",
+                idMarca: result.insertId
+            });
+    });
+}
+
+
+
+const ObtenerTodasLasMarcas = (req,res) => 
+    {
+        const sql = 'SELECT * FROM Marcas';
+    
+        db.query(sql, (err,result) => 
+        {
+            if(err) 
+                throw err;
+    
+            res.json(result);
+        });
+    }
+    
+    
+const ObtenerMarcaPorId = (req, res) =>{
+        const {id} = req.params;
+        const sql = 'SELECT * FROM Productos WHERE idMarca = ?';
+    
+        db.query(sql,[id], (err,result) =>
+        {
+            if(err) throw err;        
+            res.json(result);
+        });
+    }
+
+
+
 //aqui tambien agrego multer para exportar el modulo UPLOAD
 module.exports = 
 {
@@ -149,5 +201,11 @@ module.exports =
     crearProducto,
     ActualizarProducto,
     BorrarProducto,
+
+
+    ObtenerTodasLasMarcas,
+    ObtenerMarcaPorId,
+    crearMarca,
+
     //upload
 }
