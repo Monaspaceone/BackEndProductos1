@@ -8,19 +8,13 @@ const path = require('path');
 const productosRouter = require('./routes/productos');
 app.use(express.json());
 
-app.use('/productos',productosRouter);
-//app.use(express.static(path.join(__dirname,'public')));
+//app.use('/productos',productosRouter);
+app.use(express.static(path.join(__dirname,'public')));
 
 
-//me tira error
 
-//const marcasRouter = require('./routes/marcas');
-//app.use(express.json());
-
-//app.use('/marcas',marcasRouter);
-//app.use(express.static(path.join(__dirname,'public')));
-
-
+//AGREGADO DE MULTER
+//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/', (req,res) => 
     {

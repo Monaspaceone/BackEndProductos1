@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () =>
     //const idMarcaSelect = document.getElementById('idMarca');
 
 
-   /*
+   
     async function cargarMarcas() {
         try {
             const response = await fetch('/marcas');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () =>
         }
     }
 
-*/
+
 //para que despliegue el form de Crear Producto
       
    mostrarCrearProductoFormBtn.addEventListener('click',() =>
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () =>
             crearMarcaForm.classList.toggle('hidden');
         });
 
-    /*
+    
     
     //crear Marcas
 
@@ -256,8 +256,8 @@ document.addEventListener('DOMContentLoaded', () =>
     }
 
 
-
 /*
+
 
 async function listarMarcas() {
         const response = await fetch('/marcas');
@@ -285,14 +285,14 @@ async function listarMarcas() {
             idMarcaSelect.appendChild(option);
         });
     }
-});
-
-
-
-
-
-
 
 */
-
+    
 });
+
+
+
+
+
+
+

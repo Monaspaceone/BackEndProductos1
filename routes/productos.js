@@ -3,7 +3,7 @@ const router = express.Router();
 
 const productController = require('../controller/productController');
 
-
+//Productos
 router.get('/', productController.ObtenerTodosLosProductos);
 router.get('/:id', productController.ObtenerProductoPorId);
 
@@ -16,3 +16,6 @@ router.delete('/:id',productController.BorrarProducto);
 
 
 module.exports = router;
+
+
+
