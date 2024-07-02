@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () =>
     const mostrarCrearMarcaBtn= document.getElementById('mostrarCrearMarcaBtn');
     const crearProductoForm = document.getElementById('crearProductoForm');
     const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
-    const editarProductoForm = document.getElementById('editarProductoForm');
-    const listarProductosBtn = document.getElementById('listarProductosBtn');
+    //const editarProductoForm = document.getElementById('editarProductoForm');
+    //const listarProductosBtn = document.getElementById('listarProductosBtn');
    //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
    
    // esta es la constante que hace que no se despliegen los form
    // const listarProductos = document.getElementById('listarProductos');
     //const listarMarcas = document.getElementById('listarMarcas');
-    const idMarcaSelect = document.getElementById('idMarca');
+    //const idMarcaSelect = document.getElementById('idMarca');
 
 
-
+   /*
     async function cargarMarcas() {
         try {
             const response = await fetch('/marcas');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () =>
         }
     }
 
-
+*/
 //para que despliegue el form de Crear Producto
       
    mostrarCrearProductoFormBtn.addEventListener('click',() =>
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () =>
             crearMarcaForm.classList.toggle('hidden');
         });
 
-    
+    /*
     
     //crear Marcas
 

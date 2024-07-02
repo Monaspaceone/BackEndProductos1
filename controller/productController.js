@@ -142,7 +142,7 @@ const BorrarProducto = (req, res) =>{
 };
 
 
-
+/*
 
 const crearMarca = (req, res) =>
     {
@@ -150,7 +150,7 @@ const crearMarca = (req, res) =>
     //const archivo = req.file? req.file.filename: null;//Obtener el nombre del archivo guardado
 
     
-    const sql = 'INSERT INTO productos (nombre, categoria) VALUES (?,?,?,?,?,?)';
+    const sql = 'INSERT INTO marcas (nombre, categoria) VALUES (?,?,?,?,?,?)';
  
     db.query(sql,[nombre, categoria], (err,result) =>
     {
@@ -182,7 +182,7 @@ const ObtenerTodasLasMarcas = (req,res) =>
     
 const ObtenerMarcaPorId = (req, res) =>{
         const {id} = req.params;
-        const sql = 'SELECT * FROM Productos WHERE idMarca = ?';
+        const sql = 'SELECT * FROM Marcas WHERE idMarca = ?';
     
         db.query(sql,[id], (err,result) =>
         {
@@ -191,7 +191,7 @@ const ObtenerMarcaPorId = (req, res) =>{
         });
     }
 
-
+*/
 
 //aqui tambien agrego multer para exportar el modulo UPLOAD
 module.exports = 
@@ -203,9 +203,9 @@ module.exports =
     BorrarProducto,
 
 
-    ObtenerTodasLasMarcas,
-    ObtenerMarcaPorId,
-    crearMarca,
+    //ObtenerTodasLasMarcas,
+   // ObtenerMarcaPorId,
+   // crearMarca,
 
     //upload
 }
