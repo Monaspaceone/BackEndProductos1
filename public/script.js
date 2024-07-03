@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () =>
     const editarProductoForm = document.getElementById('editarProductoForm');
     const listarProductosBtn = document.getElementById('listarProductosBtn');
     const listaProductos = document.getElementById('listaProductos');
-    //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
+    const listarMarcasBtn = document.getElementById('listarMarcasBtn');
     //const listarMarcas = document.getElementById('listarMarcas');
    // esta es la constante que hace que no se despliegen los form
    
-    //const idMarcaSelect = document.getElementById('idMarca');
+    const idMarcaSelect = document.getElementById('idMarca');
 
 //para que despliegue el form de Crear Producto
     
@@ -26,6 +26,47 @@ document.addEventListener('DOMContentLoaded', () =>
         {
             crearMarcaForm.classList.toggle('hidden');
         });
+
+
+
+// para introducir las marcas en los formularios
+ crearMarcaForm.addEventListener('submit', async (e) => 
+            {
+                e.preventDefault();//evita qaue la pagina se actualice
+        
+                const formData = new FormData(crearMarcaForm); // guarda los datos del formulario
+          //cuando hago un get recibo un json 
+                const data = 
+                {
+                 
+                    nombre: formData.get('nombre'),
+                    categorias: formData.get('categorias'),
+                    
+                };
+        
+                const response = await fetch('/marcas',
+                {
+                    method: 'POST',
+                    body: formData
+                
+                });
+        
+                const result = await response.json();
+                alert(result.message);
+                crearMarcaForm.reset(); 
+                crearMarcaForm.classList.add('hidden');
+                listarMarcas();
+                cargarMarcas(); 
+            });
+
+
+
+
+
+
+
+
+
             
     //CREAR PRODUCTOS NUEVOS
     crearProductoForm.addEventListener('submit', async (e) => 
@@ -59,33 +100,7 @@ document.addEventListener('DOMContentLoaded', () =>
         listarProductos();
     });
 
-    crearMarcaForm.addEventListener('submit', async (e) => 
-        {
-            e.preventDefault();//evita qaue la pagina se actualice
     
-            const formData = new FormData(crearMarcaForm); // guarda los datos del formulario
-      //cuando hago un get recibo un json 
-            const data = 
-            {
-    
-                nombre: formData.get('nombre'),
-                categorias: formData.get('categorias'),
-            
-            };
-    
-            const response = await fetch('/Marcas',
-            {
-                method: 'POST',
-                body: formData
-            
-            });
-    
-            const result = await response.json();
-            alert(result.message);
-            crearMarcaForm.reset(); 
-            crearMarcaForm.classList.add('hidden');
-            listarMarcas();
-        });
 
     //EDITAR USUARIO
     editarProductoForm.addEventListener('submit', async(e) => 
@@ -103,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () =>
             descripcion: formData.get('editDescripcion'),
             categoria: formData.get ('editCategoria'),
             editTemporada: formData.get ('editTemporada'),
-            precio: formData.get('editPrecio')
+            precio: formData.get('editPrecio'),
         };
 
         const response = await fetch(`/productos/${id}`,
@@ -118,20 +133,20 @@ document.addEventListener('DOMContentLoaded', () =>
 
         const result = await response.json();
         alert(result.message);
-        editarUsuarioForm.reset();
-        editarUsuarioForm.classList.add('hidden');
+        editarProductoForm.reset();
+        editarProductoForm.classList.add('hidden');
         listarProductos();
 
     });
 
 
 
-
+    
 
     //listar todos los usuarios
     listarProductosBtn.addEventListener('click', listarProductos);
     //listar todas las marcas
-    //listarMarcasBtn.addEventListener('click', listarMarcas);
+    listarMarcasBtn.addEventListener('click', listarMarcas);
 
 
 
@@ -212,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () =>
     }
 
 
-/*
 
 async function listarMarcas() {
         const response = await fetch('/marcas');
@@ -240,7 +254,14 @@ async function listarMarcas() {
             idMarcaSelect.appendChild(option);
         });
     }
-*/
+
+  // Inicializar la página
+    //listarProductos();
+    listarMarcas();
+    cargarMarcas();
+
+
+
 
     
 });

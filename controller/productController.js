@@ -5,46 +5,6 @@ const db = require('../db/db');
 const path = require('path');
 
 
-//subir archivos
-
-/*const storage = multer.diskStorage(
-    {
-        destination: function (req,file,cb){
-            cb(null,'uploads/');//Indica la carpeta donde se guardaran los archivos
-        },
-        filename: function(req,file,cb)
-        {
-            cb(null,Date.now() + '-' + file.originalname);//nombre del archivo en el disco
-        },
-        fileFilter: (req,file,cb) =>
-        {
-            const fileTypes = /jpeg|jpg|png/;
-
-
-            const mimeType = fileTypes.test(file.mimetype.toLowerCase());
-
-
-            const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-
-
-       
-            if(mimeType && extname)
-            {    
-                return cb(null,true);
-            }
-        
-        return cb(new Error('Error: Tipo de archivo NO PERMITIDO'), false);
-       
-        },
-        limits:
-        {
-            fileSize: 100000000
-        }
-
-    });
-
-    const upload = multer({storage: storage});*/
-
 
 
 
@@ -142,7 +102,7 @@ const BorrarProducto = (req, res) =>{
 };
 
 // lo hice yo para probar, 
-/*
+
 const crearMarca = (req, res) =>
     {
     const {nombre, categoria} = req.body;
@@ -162,7 +122,7 @@ const crearMarca = (req, res) =>
 }
 
 
-/*
+
 const ObtenerTodasLasMarcas = (req,res) => 
     {
         const sql = 'SELECT * FROM Marcas';
@@ -188,7 +148,7 @@ const ObtenerMarcaPorId = (req, res) =>{
         });
     }
 
-*/
+
 
 //aqui tambien agrego multer para exportar el modulo UPLOAD
 module.exports = 
@@ -199,10 +159,9 @@ module.exports =
     ActualizarProducto,
     BorrarProducto,
 
-
-    //ObtenerTodasLasMarcas,
-   // ObtenerMarcaPorId,
-   // crearMarca,
+   ObtenerTodasLasMarcas,
+   ObtenerMarcaPorId,
+   crearMarca,
 
     //upload
 }
@@ -281,18 +240,3 @@ const ObtenerMarcaPorId = (req, res) =>{
 */
 
 //aqui tambien agrego multer para exportar el modulo UPLOAD
-module.exports = 
-{
-    ObtenerTodosLosProductos,
-    ObtenerProductoPorId,
-    crearProducto,
-    ActualizarProducto,
-    BorrarProducto,
-
-
-    //ObtenerTodasLasMarcas,
-   // ObtenerMarcaPorId,
-   // crearMarca,
-
-    //upload
-}

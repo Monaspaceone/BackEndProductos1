@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #555;
+    background: linear-gradient(to right, #37637c, #00c3ff);
     margin: 0;
     padding: 20px;
 }
@@ -8,10 +9,11 @@ body {
 
 h1 {
     text-align: center;
+    color: #fff;
  
 }
 
-h1, h2, h3 {
+h2, h3 {
     color: #333;
 }
 

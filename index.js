@@ -6,7 +6,8 @@ const app = express();
 const path = require('path'); //une el dirname con la carpeta public
 
 const productosRouter = require('./routes/productos');
-//const marcasRouter = require('./routes/marcas');
+
+const marcasRouter = require('./routes/marcas');
 
 
 
@@ -18,7 +19,7 @@ app.use(express.json());
 //estaba comentada la linea de abajo, 
 app.use('/productos',productosRouter);
 
-//app.use('/marcas', marcasRouter); // Usa el enrutador de marcas
+app.use('/marcas', marcasRouter); // Usa el enrutador de marcas
 
 
 app.use(express.static(path.join(__dirname,'public')));

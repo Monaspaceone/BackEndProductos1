@@ -44,20 +44,20 @@ connection.connect((err) =>
 
 
 
-                const createTableQuery = `
+                const createProductosTableQuery = `
                     CREATE TABLE IF NOT EXISTS productos (
                         idProducto INT AUTO_INCREMENT PRIMARY KEY,
                         idMarca INT,
                         producto VARCHAR(100),
                         descripcion TEXT,
-                        categoria VARCHAR(1),
+                        categoria VARCHAR(10),
                         temporada TINYINT(1),
                         precio DECIMAL(10,2)
                     );            
                 `;
 
 
-                connection.query(createTableQuery,(err,results) =>
+                connection.query(createProductosTableQuery,(err,results) =>
                 {
                     if(err)
                     {
@@ -68,15 +68,38 @@ connection.connect((err) =>
 
                     console.log("Tabla asegurada");
                 });
-            });
+                
 
+                const createMarcasTableQuery = `
+                CREATE TABLE IF NOT EXISTS Marcas (
+                    idMarca INT AUTO_INCREMENT PRIMARY KEY,
+                    nombre VARCHAR(100),
+                    categorias VARCHAR(10)
+                    
+                );            
+            `;
+
+
+            connection.query(createMarcasTableQuery,(err,results) =>
+            {
+                if(err)
+                {
+                    console.log("Error creando la tabla: " , err);
+                    return;
+                }
+
+
+                console.log("Tabla asegurada");
+
+
+            });
 
         });
 
     });
 
 
-
+    }); 
 
 //EXPORTO EL MODULO CONNECTION PARA SER USADO EN OTRO MODULO
 

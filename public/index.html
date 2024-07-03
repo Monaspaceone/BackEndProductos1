@@ -1,4 +1,4 @@
-<html> 
+<!DOCTYPE html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +38,7 @@
              <h2>Producto</h2>
              <label for="idMarca">Seleccione la marca:</label>
              <select id="idMarca" name="idMarca" required>
+    
                 <!--esto tendria que llenarse con js-->
                 </select>
 
@@ -68,7 +69,7 @@
         <h2>Editar Producto</h2>
         <input type="hidden" id="editID" name="editID">
 
-        <label for="editIdMarca">ID Marca</label>
+        <label for="editIdMarca">ID Marca: </label>
         <input type="number" id="editIdMarca" name="editIdMarca" required> 
 
         <label for="editProducto">Producto: </label>
@@ -92,13 +93,13 @@
     </form>
 
     
-      <!--muestra el listado -->  
+      <!--muestra el listados -->  
 
-      <h2>Lista de Marcas</h2>
+    <h2>Lista de Marcas</h2>
       <button id="listarMarcasBtn"> Listar Marcas</button>
       <ul id="listaMarcas"></ul>
       
-        <h2>Lista de Productos</h2>
+    <h2>Lista de Productos</h2>
         <button id="listarProductosBtn"> Listar Productos</button>
         <ul id="listaProductos"></ul>
     
