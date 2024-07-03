@@ -5,38 +5,17 @@ document.addEventListener('DOMContentLoaded', () =>
     const mostrarCrearMarcaBtn= document.getElementById('mostrarCrearMarcaBtn');
     const crearProductoForm = document.getElementById('crearProductoForm');
     const crearMarcaForm = document.getElementById ('crearMarcaForm'); 
-    //const editarProductoForm = document.getElementById('editarProductoForm');
-    //const listarProductosBtn = document.getElementById('listarProductosBtn');
-   //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
-   
-   // esta es la constante que hace que no se despliegen los form
-   // const listarProductos = document.getElementById('listarProductos');
+    const editarProductoForm = document.getElementById('editarProductoForm');
+    const listarProductosBtn = document.getElementById('listarProductosBtn');
+    const listaProductos = document.getElementById('listaProductos');
+    //const listarMarcasBtn = document.getElementById('listarMarcasBtn');
     //const listarMarcas = document.getElementById('listarMarcas');
+   // esta es la constante que hace que no se despliegen los form
+   
     //const idMarcaSelect = document.getElementById('idMarca');
 
-
-   
-    async function cargarMarcas() {
-        try {
-            const response = await fetch('/marcas');
-            const marcas = await response.json();
-
-            idMarcaSelect.innerHTML = '';
-
-            marcas.forEach(marca => {
-                const option = document.createElement('option');
-                option.value = marca.id;
-                option.textContent = marca.nombre;
-                idMarcaSelect.appendChild(option);
-            });
-        } catch (error) {
-            console.error('Error al cargar las marcas:', error);
-        }
-    }
-
-
 //para que despliegue el form de Crear Producto
-      
+    
    mostrarCrearProductoFormBtn.addEventListener('click',() =>
     {
         crearProductoForm.classList.toggle('hidden');
@@ -47,42 +26,7 @@ document.addEventListener('DOMContentLoaded', () =>
         {
             crearMarcaForm.classList.toggle('hidden');
         });
-
-    
-    
-    //crear Marcas
-
-
-    crearMarcaForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(crearMarcaForm);
-
-        const data = {
-            nombre: formData.get('nombre'),
-            categoria: formData.get('categoria')
-        };
-
-        const response = await fetch('/marcas', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-        alert(result.message);
-        crearMarcaForm.reset();
-        crearMarcaForm.classList.add('hidden');
-        cargarMarcas(); // Actualizar el menú desplegable de marcas
-        listarMarcas(); // Actualizar la lista de marcas
-    });
-
-
-
-
-        
+            
     //CREAR PRODUCTOS NUEVOS
     crearProductoForm.addEventListener('submit', async (e) => 
     {
@@ -115,6 +59,33 @@ document.addEventListener('DOMContentLoaded', () =>
         listarProductos();
     });
 
+    crearMarcaForm.addEventListener('submit', async (e) => 
+        {
+            e.preventDefault();//evita qaue la pagina se actualice
+    
+            const formData = new FormData(crearMarcaForm); // guarda los datos del formulario
+      //cuando hago un get recibo un json 
+            const data = 
+            {
+    
+                nombre: formData.get('nombre'),
+                categorias: formData.get('categorias'),
+            
+            };
+    
+            const response = await fetch('/Marcas',
+            {
+                method: 'POST',
+                body: formData
+            
+            });
+    
+            const result = await response.json();
+            alert(result.message);
+            crearMarcaForm.reset(); 
+            crearMarcaForm.classList.add('hidden');
+            listarMarcas();
+        });
 
     //EDITAR USUARIO
     editarProductoForm.addEventListener('submit', async(e) => 
@@ -159,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
     //listar todos los usuarios
     listarProductosBtn.addEventListener('click', listarProductos);
+    //listar todas las marcas
     //listarMarcasBtn.addEventListener('click', listarMarcas);
 
 
@@ -185,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () =>
                     </div>
                 
                 `;
-                listaProducto.appendChild(li);
+                listaProductos.appendChild(li);
             });
 
             //ACTUALIZAR USUARIO
@@ -240,10 +212,10 @@ document.addEventListener('DOMContentLoaded', () =>
     }
 
 
-    listarMarcasBtn.addEventListener('click', listarMarcas);
+/*
 
-    async function listarMarcas() {
-        const response = await fetch('/api/marcas');
+async function listarMarcas() {
+        const response = await fetch('/marcas');
         const marcas = await response.json();
 
         listaMarcas.innerHTML = '';
@@ -252,23 +224,6 @@ document.addEventListener('DOMContentLoaded', () =>
             const li = document.createElement('li');
             li.textContent = `ID: ${marca.id}, Nombre: ${marca.nombre}, Categoría: ${marca.categoria}`;
             listaMarcas.appendChild(li);
-        });
-    }
-
-
-/*
-
-
-async function listarMarcas() {
-        const response = await fetch('/marcas');
-        const marcas = await response.json();
-
-        listarMarcas.innerHTML = '';
-
-        marcas.forEach(marca => {
-            const li = document.createElement('li');
-            li.textContent = `ID: ${marca.id}, Nombre: ${marca.nombre}, Categoría: ${marca.categoria}`;
-            listarMarcas.appendChild(li);
         });
     }
 
@@ -285,8 +240,8 @@ async function listarMarcas() {
             idMarcaSelect.appendChild(option);
         });
     }
-
 */
+
     
 });
 

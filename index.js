@@ -3,12 +3,24 @@ let port = 3000;
 const express = require('express');
 const app = express();
 
-const path = require('path');
+const path = require('path'); //une el dirname con la carpeta public
 
 const productosRouter = require('./routes/productos');
+//const marcasRouter = require('./routes/marcas');
+
+
+
+
 app.use(express.json());
 
-//app.use('/productos',productosRouter);
+
+
+//estaba comentada la linea de abajo, 
+app.use('/productos',productosRouter);
+
+//app.use('/marcas', marcasRouter); // Usa el enrutador de marcas
+
+
 app.use(express.static(path.join(__dirname,'public')));
 
 

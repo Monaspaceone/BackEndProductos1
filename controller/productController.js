@@ -141,7 +141,7 @@ const BorrarProducto = (req, res) =>{
     });
 };
 
-// lo hice yo, 
+// lo hice yo para probar, 
 /*
 const crearMarca = (req, res) =>
     {
