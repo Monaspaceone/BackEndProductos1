@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () =>
   //cuando hago un get recibo un json 
         const data = 
         {
+            id: formData.get(id),
             idMarca: formData.get('idMarca'),
             producto: formData.get('producto'),
             descripcion: formData.get('descripcion'),
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () =>
         
         const data = 
         {
-            //que onda el id de marca
+            idProducto: formData.get ('editID'),
             idMarca: formData.get ('editIdMarca'),
             producto: formData.get('editProducto'),
             descripcion: formData.get('editDescripcion'),
@@ -236,7 +237,7 @@ async function listarMarcas() {
 
         marcas.forEach(marca => {
             const li = document.createElement('li');
-            li.textContent = `ID: ${marca.id}, Nombre: ${marca.nombre}, Categoría: ${marca.categoria}`;
+            li.textContent = `ID: ${marca.id}, Nombre: ${marca.nombre}, Categorías: ${marca.categorias}`;
             listaMarcas.appendChild(li);
         });
     }
@@ -257,12 +258,8 @@ async function listarMarcas() {
 
   // Inicializar la página
     //listarProductos();
-    listarMarcas();
+    
     cargarMarcas();
-
-
-
-
     
 });
 

@@ -6,8 +6,6 @@ const path = require('path');
 
 
 
-
-
 const ObtenerTodosLosProductos = (req,res) => 
 {
     const sql = 'SELECT * FROM Productos';
@@ -105,11 +103,11 @@ const BorrarProducto = (req, res) =>{
 
 const crearMarca = (req, res) =>
     {
-    const {nombre, categoria} = req.body;
+    const {nombre, categorias} = req.body;
     
-    const sql = 'INSERT INTO marcas (nombre, categoria) VALUES (?,?)';
+    const sql = 'INSERT INTO marcas (nombre, categorias) VALUES (?,?)';
  
-    db.query(sql,[nombre, categoria], (err,result) =>
+    db.query(sql,[nombre, categorias], (err,result) =>
     {
         if (err) throw err;
 

@@ -17,6 +17,10 @@ h2, h3 {
     color: #333;
 }
 
+body, form, input, textarea, select, button {
+    font-family: Arial, sans-serif;
+}
+
 .hidden {
     display: none;
 }
@@ -112,7 +116,7 @@ li .delete:hover {
     background-color: #c82333;
 }
 
-        .form-group {
+.form-group {
             width: 80%;
             margin: auto;
             overflow: hidden;
@@ -121,13 +125,14 @@ li .delete:hover {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 50px;
             margin-bottom: 15px;
+            border-radius: 5px;
         }
-        label {
+ label {
             display: block;
             margin-bottom: 5px;
             color: #333;
         }
-        input[type="text"], input[type="number"], input[type="url"], select, textarea {
+         input[type="text"], input[type="number"], input[type="url"], select, textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -137,7 +142,7 @@ li .delete:hover {
         
 
        
-        .container {
+ .container {
             width: 50%;
             margin: auto;
             overflow: hidden;
@@ -146,7 +151,7 @@ li .delete:hover {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 50px;
         }
-        .form-group {
+.form-group {
             margin-bottom: 15px;
         }
       

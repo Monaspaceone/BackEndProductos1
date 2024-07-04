@@ -10,11 +10,7 @@ const productosRouter = require('./routes/productos');
 const marcasRouter = require('./routes/marcas');
 
 
-
-
 app.use(express.json());
-
-
 
 //estaba comentada la linea de abajo, 
 app.use('/productos',productosRouter);

@@ -36,6 +36,9 @@
          <form id="crearProductoForm" class="hidden" enctype="multipart/form-data">
 
              <h2>Producto</h2>
+             <label for="id">ID:</label>
+             <input type="number" id="id" name="id" required>
+        
              <label for="idMarca">Seleccione la marca:</label>
              <select id="idMarca" name="idMarca" required>
     
@@ -67,6 +70,7 @@
          <!--FORM PARA EDITAR -->
     <form id="editarProductoForm" class="hidden" enctype="multipart/form-data">
         <h2>Editar Producto</h2>
+
         <input type="hidden" id="editID" name="editID">
 
         <label for="editIdMarca">ID Marca: </label>
