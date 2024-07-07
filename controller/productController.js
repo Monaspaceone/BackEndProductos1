@@ -94,7 +94,7 @@ const BorrarProducto = (req, res) =>{
 
         res.json(
             {
-                message: 'Producto eliminado'
+                mensaje: 'Producto eliminado'
             });
     });
 };
@@ -159,82 +159,7 @@ module.exports =
 
    ObtenerTodasLasMarcas,
    ObtenerMarcaPorId,
-   crearMarca,
+   crearMarca
 
     //upload
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// lo hice yo, 
-/*
-const crearMarca = (req, res) =>
-    {
-    const {nombre, categoria} = req.body;
-    
-    const sql = 'INSERT INTO marcas (nombre, categoria) VALUES (?,?)';
- 
-    db.query(sql,[nombre, categoria], (err,result) =>
-    {
-        if (err) throw err;
-
-        res.json(
-            {
-                mensaje : "Marca Creada exitosamente",
-                idMarca: result.insertId
-            });
-    });
-}
-
-
-/*
-const ObtenerTodasLasMarcas = (req,res) => 
-    {
-        const sql = 'SELECT * FROM Marcas';
-    
-        db.query(sql, (err,result) => 
-        {
-            if(err) 
-                throw err;
-    
-            res.json(result);
-        });
-    }
-    
-    
-const ObtenerMarcaPorId = (req, res) =>{
-        const {id} = req.params;
-        const sql = 'SELECT * FROM Marcas WHERE idMarca = ?';
-    
-        db.query(sql,[id], (err,result) =>
-        {
-            if(err) throw err;        
-            res.json(result);
-        });
-    }
-
-*/
-
-//aqui tambien agrego multer para exportar el modulo UPLOAD
