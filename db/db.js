@@ -4,8 +4,8 @@ const connection = mySql.createConnection(
     {
         host : 'localhost',
         user: 'root',
-        password : 'monacoa1',
-        //password: 'norabc22mysql',
+        //password : 'monacoa1',
+        password: 'norabc22mysql',
         database: 'tienda_ropa'
     });
 
@@ -51,7 +51,6 @@ connection.connect((err) =>
                         producto VARCHAR(100),
                         descripcion TEXT,
                         categoria VARCHAR(10),
-                        temporada TINYINT(1),
                         precio DECIMAL(10,2)
                     );            
                 `;
