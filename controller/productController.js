@@ -119,18 +119,6 @@ const crearMarca = (req, res) =>
     });
 }
 
- // Evento para eliminar una marca
- document.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('deleteMarca')) {
-        const id = e.target.getAttribute('data-id');
-        const response = await fetch(`/marcas/${id}`, {
-            method: 'DELETE'
-        });
-        const result = await response.json(); // Parsear la respuesta
-        swal(result.mensaje); // Mostrar mensaje al usuario
-        listarMarcas(); // Actualizar la lista de marcas
-    }
-});
 
 
 const ObtenerTodasLasMarcas = (req,res) => 
@@ -171,8 +159,7 @@ module.exports =
 
    ObtenerTodasLasMarcas,
    ObtenerMarcaPorId,
-   crearMarca,
-   BorrarMarca,
+   crearMarca
 
     //upload
 }
