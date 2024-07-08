@@ -36,17 +36,17 @@ const ObtenerProductoPorId = (req, res) =>{
 
 const crearProducto = (req, res) =>
     {
-    const {idMarca,producto,descripcion,categoria,temporada,precio} = req.body;
+    const {idMarca,producto,descripcion,categoria,precio} = req.body;
     //const archivo = req.file? req.file.filename: null;//Obtener el nombre del archivo guardado
 
     //Crea un registro en la base Productos
-    const sql = 'INSERT INTO productos (idMarca, producto, descripcion, categoria, temporada, precio) VALUES (?,?,?,?,?,?)';
+    const sql = 'INSERT INTO productos (idMarca, producto, descripcion, categoria, precio) VALUES (?,?,?,?,?)';
 
  //   'INSERT INTO usuarios (nombre,apellido,mail, ruta_archivo) VALUES (?,?,?,?)';
 
 
  //   db.query(sql,[nombre,descripcion,categoria,temporada,precio,archivo], (err,result) =>
-    db.query(sql,[idMarca,producto,descripcion,categoria,temporada,precio], (err,result) =>
+    db.query(sql,[idMarca,producto,descripcion,categoria,precio], (err,result) =>
     {
         if (err) throw err;
 
@@ -65,11 +65,11 @@ const crearProducto = (req, res) =>
 
 const ActualizarProducto = (req, res) =>{
     const {id} = req.params;
-    const {idMarca,producto,descripcion,categoria,temporada,precio} = req.body;
+    const {idMarca,producto,descripcion,categoria,precio} = req.body;
 
 
-    const sql = 'UPDATE Productos SET idMarca = ?, producto = ?, descripcion = ?, categoria = ?, temporada = ?, precio = ? WHERE idProducto = ?';
-    db.query(sql,[idMarca,producto,descripcion,categoria,temporada,precio,id], (err,result) =>
+    const sql = 'UPDATE Productos SET idMarca = ?, producto = ?, descripcion = ?, categoria = ?, precio = ? WHERE idProducto = ?';
+    db.query(sql,[idMarca,producto,descripcion,categoria,precio,id], (err,result) =>
     {
         if(err) throw err;
 
