@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cargarMarcas(); 
     });
 
+    
+
    // evento para crear un nuevo producto
 
     crearProductoForm.addEventListener('submit', async (e) => {
@@ -162,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${producto.precio}</td>
                 <td>
                     <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"data-descripcion="${producto.descripcion}"data-categoria="${producto.categoria}" data-precio="${producto.precio}">Editar</button>
-                    <button class="delete" data-id="${producto.idProducto}">Borrar</button>
+                    <button class="delete" data-id="${producto.idProducto}"><i class="fas fa-trash-alt"></i></button>
                 </td>
             `;
             bodyTablaProductos.appendChild(tr); //agregamos la fila a la tabla
@@ -196,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`/productos/${id}`, {
                     method: 'DELETE'
                 });
-                const result = await response.json(); ///parseamos la respuesta a json
+                const result = await response.json(); ///parseamos la respuesta
                 swal(result.mensaje);
                 listarProductos();
             });
@@ -222,7 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
         cargarMarcas();
     }
 
-    listarProductosBtn.addEventListener('click', listarProductos);
+
+    listarProductos(); 
+    //listarProductosBtn.addEventListener('click', listarProductos);
     listarMarcasBtn.addEventListener('click', listarMarcas);
 
     // Cargar marcas al inicio
