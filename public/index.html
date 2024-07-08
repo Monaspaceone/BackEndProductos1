@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <title>formulario CRUD</title>
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+     <header style="text-align: center;"><h2> SJ-  Indumentaria <h2> </h2></header>
+   
+    <main>   
+        <br>
+
+    <h1 class="tituloPrincipal">Base de Datos: Productos</h1>
+
+    <div class="container"> 
+     <div class="form-group">        
+    <h3>Formulario de Producto: </h3>
+        
+     <button id="mostrarCrearMarcaBtn" > Ingresar Marca</button>
+        <form id="crearMarcaForm" class="hidden" enctype="multipart/form-data" >
+            <h3> Marca</h3>
+
+                <label for="nombre">Nombre de la Marca:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="categorias">Categoría:</label>
+                <input type="text" id="categorias" name="categorias" required>
+
+                <button type="submit" id="guardarMarca"> Guardar</button> 
+         </form>
+        
+        <!--Desplegar el formulario de creacion de producto-->
+         <button id="mostrarCrearProductoFormBtn">Crear Producto</button>
+
+         <!--form para crear el nuevo usuario-->
+
+         <form id="crearProductoForm" class="hidden" enctype="multipart/form-data">
+
+             <h3>Producto</h3>
+            
+             <label for="idMarca">Seleccione la marca:</label>
+             <select id="idMarca" name="idMarca" class="form-select" aria-label="Default select example" required>
+    
+                <!--esto tendria que llenarse con js-->
+                </select>
+
+             <label for="producto">Nombre del Producto:</label>
+             <input type="text" id="producto" name="producto" required>
+
+             <label for="descripcion">Descripción:</label>
+             <textarea type="text" id="descripcion" name="descripcion"></textarea>
+
+             <label for="categoria">Categoría:</label>
+             <select id="categoria" name="categoria" required>
+                <option value = "H">Hombre</option>
+                <option value = "M">Mujer</option>
+                <option value = "N">Niños</option>
+            </select>
+
+             <label for="precio">Precio Base:</label>
+             <input type="number" id="precio" name="precio" step="0.01" required>
+             
+             <button type="submit" id="guardarFormProducto"> Guardar </button>
+         </form>
+
+      
+         <!--FORM PARA EDITAR -->
+    <form id="editarProductoForm" class="hidden" enctype="multipart/form-data">
+        <h3>Editar Producto   
+            <button type="button" id="closeEditForm" class="close-btn">X</button>
+        </h3>
+
+        <input type="hidden" id="editID" name="editID">
+
+        <label for="editIdMarca">Seleccione la marca:</label>
+        <select id="editIdMarca" name="editIdMarca" class="form-select" aria-label="Default select example" required>
+
+        <!--aca va el select y lo de abajo no va--> 
+        </select>
+
+        <label for="editProducto">Producto: </label>
+        <input type="text" id="editProducto" name="editProducto" required>
+
+        <label for="editDescripcion">Descripción:</label>
+        <textarea id="editDescripcion" name="editDescripcion"></textarea>
+
+        <label for="editCategoria">Categoría:</label>
+        <select id="editCategoria" name="editCategoria" required>
+            <option value = "H">Hombre</option>
+            <option value = "M">Mujer</option>
+            <option value = "N">Niños</option>
+        </select>
+
+        <label for="editPrecio">Precio Base:</label>
+        <input type="number" id="editPrecio" name="editPrecio" step="0.01" required>
+        
+        <button type="submit"> Actualizar</button>
+    </form>
+
+    </div>
+      <!--muestra el listados -->  
+  <div class=" form-group2"> 
+     <div class="form-group2">
+     <h3>Lista de Marcas</h3>
+            <button id="listarMarcasBtn">Listar Marcas</button>
+            <table id="tablaMarcas" class="hidden">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyTablaMarcas"></tbody>
+            </table>
+        </div>
+      
+    <h3>Lista de Productos</h3>
+        <button id="listarProductosBtn">Listar Productos</button>
+        <table id="tablaProductos" class="hidden">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Marca</th>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="bodyTablaProductos"></tbody>
+        </table>
+        
+        
+        </div>
+     </main>
+     <script src="script.js"></script>
+
+    
+
+    </body> 
+</html>

@@ -1,0 +1,207 @@
+
+header{
+    width: 100%;
+    height: 45px;
+    background-color: #101111;
+    overflow: hidden;
+}
+
+body {
+    font-family:'Lucida Sans', sans-serif; 
+    background-color: #555;
+    background: linear-gradient(to right, #37637c, #00c3ff);
+    margin: 0;
+    padding: 0px;
+}
+
+.container {
+    display: flex; 
+    width: 95%; 
+    margin: auto;
+    overflow: hidden;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    top: 50px; 
+}
+
+h2, h3 {
+    color: #333;
+}
+
+body, form, input, textarea, select, button {
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+
+button .close-btn {
+    
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+    position: relative; 
+    top: 5px;
+    right: 5px;
+}
+
+
+.hidden {
+    display: none;
+    
+}
+
+form {
+    
+    background: #bfe6ff;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+table  {
+    width: 70%; 
+
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+button {
+          
+    background-color: #00c3ff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+
+.form-group {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+ .form-group2 {
+            width: 90%;
+            overflow: hidden;
+            padding: 10px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+
+ input[type="text"],
+ input[type="number"],  
+ select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+    
+        input {
+            width: 200px; /* Puedes ajustar el tamaño según sea necesario */
+            height: 30px;
+        }
+
+        textarea {
+            width: 250px;
+            height: 60px;
+        }
+
+        select {
+            width: 210px;
+            height: 37px;
+        } 
+  
+
+       
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        
+        table th, table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        
+        /* Estilo para filas pares e impares */
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        table tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        
+        /* Estilos para botones dentro de las celdas */
+        table td button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            cursor: pointer;
+            border: none;
+            background-color: #ff00c8;
+            color: #fff;
+            border-radius: 3px;
+        }
+        
+        table td button:hover {
+            background-color: #770956;
+        }
+         
+        .delete {
+
+            padding: 5px 10px; 
+            background-color: #3eeb09; 
+            color: white;
+            border: none; 
+            cursor: pointer; 
+            border-radius: 3px; 
+        }
+        
+        .delete:hover {
+            background-color: #36960a; /* Cambia el color de fondo al pasar el ratón */
+        }
