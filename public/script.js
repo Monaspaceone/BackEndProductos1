@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    //seleccionamos los elementos del dom que necesitamos
 
     const mostrarCrearProductoFormBtn = document.getElementById('mostrarCrearProductoFormBtn');
     const mostrarCrearMarcaBtn = document.getElementById('mostrarCrearMarcaBtn');
@@ -14,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const bodyTablaMarcas = document.getElementById('bodyTablaMarcas');
     const tablaProductos = document.getElementById('tablaProductos');
     const bodyTablaProductos = document.getElementById('bodyTablaProductos');
+
+    //eventos para mostrar y ocultar formularios
 
     mostrarCrearProductoFormBtn.addEventListener('click', () => {
         crearProductoForm.classList.toggle('hidden');
@@ -37,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para cargar marcas en los select de los formularios
     async function cargarMarcas() {
-        const response = await fetch('/marcas');
-        const marcas = await response.json();
-
+        const response = await fetch('/marcas'); //hacemos la peticion para obtener las marcas
+        const marcas = await response.json();  //parseamos la respuesta a json
+        //limpiamos los selec antes de anadir las nuevas opciones
         idMarcaSelect.innerHTML = '';
         editIdMarcaSelect.innerHTML = '';
-
+         //anadimos las opciones al select al select de crear producto y al de editar
         marcas.forEach(marca => {
             const option = document.createElement('option');
             option.value = marca.idMarca;
@@ -56,8 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    cargarMarcas();
+    cargarMarcas();   //llamamos a la funcion para cargar las marcas al inciio
 
+    //evento para crear una nueva marca
     crearMarcaForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -83,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cargarMarcas(); 
     });
 
+   // evento para crear un nuevo producto
+
     crearProductoForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -102,14 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify(data)
         });
-
+    // procesa la respuesta del servidor
         const result = await response.json();
-        swal(result.mensaje);
-        crearProductoForm.reset();
-        crearProductoForm.classList.add('hidden');
-        listarProductos();
+        swal(result.mensaje);  //muestra el mensaje al usuario
+        crearProductoForm.reset();  //resetear el formulario
+        crearProductoForm.classList.add('hidden'); //ocultar el formulario
+        listarProductos();  //actualiza la lista
     });
-
+  //evento para editr un nuevo producto
     editarProductoForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(editarProductoForm);
@@ -137,16 +143,16 @@ document.addEventListener('DOMContentLoaded', () => {
         editarProductoForm.classList.add('hidden');
         listarProductos();
     });
-
+  //funcion de listar productos
     async function listarProductos() {
-        const response = await fetch('/productos');
-        const productos = await response.json();
+        const response = await fetch('/productos'); // Hacemos una petición para obtener los productos
+        const productos = await response.json(); /// Parseamos la respuesta a JSON
 
-        bodyTablaProductos.innerHTML = '';
+        bodyTablaProductos.innerHTML = '';  // Limpiamos el cuerpo de la tabla
 
         productos.forEach(producto => {
             
-            const tr = document.createElement('tr');
+            const tr = document.createElement('tr'); //creamos una nueva fila para cada prodcuto
             tr.innerHTML = `
                 <td>${producto.idProducto}</td>
                 <td>${producto.idMarca}</td>
@@ -159,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="delete" data-id="${producto.idProducto}">Borrar</button>
                 </td>
             `;
-            bodyTablaProductos.appendChild(tr);
+            bodyTablaProductos.appendChild(tr); //agregamos la fila a la tabla
         });
 
         document.querySelectorAll('.update').forEach(button => {
@@ -182,13 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        //anadimos eventos a los botones de borrar 
+
         document.querySelectorAll('.delete').forEach(button => {
             button.addEventListener('click', async (e) => {
                 const id = e.target.getAttribute('data-id');
                 const response = await fetch(`/productos/${id}`, {
                     method: 'DELETE'
                 });
-                const result = await response.json();
+                const result = await response.json(); ///parseamos la respuesta a json
                 swal(result.mensaje);
                 listarProductos();
             });
