@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         crearMarcaForm.reset();
         crearMarcaForm.classList.add('hidden');
         listarMarcas();
-        cargarMarcas(); // Recargar marcas después de agregar una nueva
+        cargarMarcas(); 
     });
 
     crearProductoForm.addEventListener('submit', async (e) => {
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             idMarca: formData.get('editIdMarca'),
             producto: formData.get('editProducto'),
             descripcion: formData.get('editDescripcion'),
-            temporada: formData.get('editTemporada'),
+            categoria: formData.get('editCategoria'),
             precio: formData.get('editPrecio'),
         };
 
@@ -146,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         productos.forEach(producto => {
             
-            
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${producto.idProducto}</td>
@@ -156,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${producto.categoria}</td>
                 <td>${producto.precio}</td>
                 <td>
-                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}" data-categoria="${producto.categoria}" data-temporada="${producto.temporada}" data-precio="${producto.precio}">Editar</button>
+                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"  data-categoria="${producto.categoria}" data-precio="${producto.precio}">Editar</button>
                     <button class="delete" data-id="${producto.idProducto}">Borrar</button>
                 </td>
             `;
