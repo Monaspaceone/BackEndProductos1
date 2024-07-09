@@ -8,7 +8,7 @@ const path = require('path');
 
 const ObtenerTodosLosProductos = (req,res) => 
 {
-    const sql = 'SELECT * FROM Productos';
+    const sql = 'SELECT * FROM productos';
 
     db.query(sql, (err,result) => 
     {
@@ -22,7 +22,7 @@ const ObtenerTodosLosProductos = (req,res) =>
 
 const ObtenerProductoPorId = (req, res) =>{
     const {id} = req.params;
-    const sql = 'SELECT * FROM Productos WHERE idProducto = ?';
+    const sql = 'SELECT * FROM productos WHERE idProducto = ?';
 
     db.query(sql,[id], (err,result) =>
     {
@@ -105,7 +105,7 @@ const crearMarca = (req, res) =>
     {
     const {nombre, categorias} = req.body;
     
-    const sql = 'INSERT INTO marcas (nombre, categorias) VALUES (?,?)';
+    const sql = 'INSERT INTO Marcas (nombre, categorias) VALUES (?,?)';
  
     db.query(sql,[nombre, categorias], (err,result) =>
     {
