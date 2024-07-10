@@ -5,7 +5,6 @@ const mySql = require('mysql2');
   /*  {
         host : 'localhost',
         user: 'root',
-        password : 'monacoa1',
         //password: 'norabc22mysql',
         database: 'tienda_ropa'
     });
@@ -16,9 +15,7 @@ const mySql = require('mysql2');
  user: process.env.DB_USER,
  password: process.env.DB_PASSWORD,
  database: process.env.DB_name,
- waitForConnections: true,  //agregue
-  connectionLimit: 10,    //agregue
-  queueLimit: 0        //agregue
+
   
   });
 
@@ -34,7 +31,7 @@ connection.connect((err) =>
             
        console.log("Conectado a la base de datos");
 
-       connection.query('CREATE DATABASE IF NOT EXISTS sql10718775', (err,results) =>
+       connection.query('CREATE DATABASE IF NOT EXISTS tienda_ropa', (err,results) =>
         {
             if(err)
             {
