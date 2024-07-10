@@ -1,7 +1,5 @@
 const db = require('../db/db');
 
-//ACTUALIZACIÓN CON MULTER Y CARPETA PUBLIC (en la base de datos se guarda el path)
-//const multer = require('multer');
 const path = require('path');
 
 
@@ -31,8 +29,6 @@ const ObtenerProductoPorId = (req, res) =>{
     });
 }
 
-
-//ESTO SI ES NECESARIO EDITAR CON MULTER
 
 const crearProducto = (req, res) =>
     {
