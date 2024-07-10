@@ -30,7 +30,7 @@ connection.connect((err) =>
             
        console.log("Conectado a la base de datos");
 
-       connection.query('CREATE DATABASE IF NOT EXISTS tienda_ropa', (err,results) =>
+       connection.query('CREATE DATABASE IF NOT EXISTS sql10718775', (err,results) =>
         {
             if(err)
             {
@@ -42,7 +42,7 @@ connection.connect((err) =>
             console.log("Base de datos asegurada");
 
 
-            connection.changeUser({database : 'tienda_ropa'}, (err)=>
+            connection.changeUser({database : 'sql10718775'}, (err)=>
             {
                 if(err)
                 {
