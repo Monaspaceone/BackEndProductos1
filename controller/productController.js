@@ -8,7 +8,7 @@ const path = require('path');
 
 const ObtenerTodosLosProductos = (req,res) => 
 {
-    const sql = 'SELECT * FROM Productos';
+    const sql = 'SELECT * FROM productos';
 
     db.query(sql, (err,result) => 
     {
@@ -22,7 +22,7 @@ const ObtenerTodosLosProductos = (req,res) =>
 
 const ObtenerProductoPorId = (req, res) =>{
     const {id} = req.params;
-    const sql = 'SELECT * FROM Productos WHERE idProducto = ?';
+    const sql = 'SELECT * FROM productos WHERE idProducto = ?';
 
     db.query(sql,[id], (err,result) =>
     {
@@ -68,7 +68,7 @@ const ActualizarProducto = (req, res) =>{
     const {idMarca,producto,descripcion,categoria,precio} = req.body;
 
 
-    const sql = 'UPDATE Productos SET idMarca = ?, producto = ?, descripcion = ?, categoria = ?, precio = ? WHERE idProducto = ?';
+    const sql = 'UPDATE productos SET idMarca = ?, producto = ?, descripcion = ?, categoria = ?, precio = ? WHERE idProducto = ?';
     db.query(sql,[idMarca,producto,descripcion,categoria,precio,id], (err,result) =>
     {
         if(err) throw err;
