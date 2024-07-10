@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('.delete').forEach(button => {
             button.addEventListener('click', async (e) => {
-                const id = e.target.getAttribute('data-id');
+                const id = e.currentTarget.getAttribute('data-id');
                 const response = await fetch(`/productos/${id}`, {
                     method: 'DELETE'
                 });
