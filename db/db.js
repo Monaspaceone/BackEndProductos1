@@ -1,5 +1,5 @@
 require('dotenv').config();
-const mySql = require('mysql2');
+const mySql = require('mysql2/promise'); //le agregue promise
 
  const connection = mySql.createConnection(
   /*  {
@@ -15,7 +15,11 @@ const mySql = require('mysql2');
  host: process.env.DB_HOST,
  user: process.env.DB_USER,
  password: process.env.DB_PASSWORD,
- database: process.env.DB_name
+ database: process.env.DB_name,
+ waitForConnections: true,  //agregue
+  connectionLimit: 10,    //agregue
+  queueLimit: 0        //agregue
+  
   });
 
 //CHEQUEO SI FUNCIONA LA CONEXION
@@ -42,7 +46,7 @@ connection.connect((err) =>
             console.log("Base de datos asegurada");
 
 
-            connection.changeUser({database : 'sql10718775'}, (err)=>
+            connection.changeUser({database : 'tienda_ropa'}, (err)=>   //va tienda de ropa o el sql10718775
             {
                 if(err)
                 {
