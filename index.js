@@ -1,5 +1,5 @@
 /*--------SERVIDOR ESTATICO CON EXPRESS-------*/
-//let port = 3000;
+let port = 3000;
 const express = require('express');
 const app = express();
 
