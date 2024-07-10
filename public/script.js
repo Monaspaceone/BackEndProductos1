@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${producto.categoria}</td>
                 <td>${producto.precio}</td>
                 <td>
-                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"data-descripcion="${producto.descripcion}"data-categoria="${producto.categoria}" data-precio="${producto.precio}"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"data-descripcion="${producto.descripcion}"data-categoria="${producto.categoria}" data-precio="${producto.precio}">Edit</button>
                     <button class="delete" data-id="${producto.idProducto}"><i class="fas fa-trash-alt"></i></button>
                 </td>
             `;
