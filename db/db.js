@@ -12,10 +12,10 @@ const mySql = require('mysql2');
     */
 
  {
- host: process.env.BD_HOST,
- user: process.env.BD_USER,
- password: process.env.BD_PASSWORD,
- database: process.env.BD_name
+ host: process.env.DB_HOST,
+ user: process.env.DB_USER,
+ password: process.env.DB_PASSWORD,
+ database: process.env.DB_name
   });
 
 //CHEQUEO SI FUNCIONA LA CONEXION
