@@ -163,7 +163,7 @@ button:hover {
             color: #333;
         }
         
-        /* Estilo para filas pares e impares */
+     
         table tbody tr:nth-child(even) {
             background-color: #f9f9f9;
         }
@@ -171,8 +171,7 @@ button:hover {
         table tbody tr:nth-child(odd) {
             background-color: #ffffff;
         }
-        
-        /* Estilos para botones dentro de las celdas */
+
         table td button {
             padding: 5px 10px;
             margin-right: 5px;
