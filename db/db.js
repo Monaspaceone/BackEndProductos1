@@ -27,12 +27,12 @@ module.exports = connection;
 
 
 
-require('dotenv').config();
+//require('dotenv').config();
 const mySql = require('mysql2'); 
 
  const connection = mySql.createConnection(
 
-
+/*
  {
  host: process.env.DB_HOST,
  user: process.env.DB_USER,
@@ -41,6 +41,14 @@ const mySql = require('mysql2');
 
   
   });
+*/
+
+{
+    host : 'localhost',
+    user: 'root',
+    password : 'monacoa1',
+    database: 'tienda_ropa'
+});
 
 //CHEQUEO SI FUNCIONA LA CONEXION
 
