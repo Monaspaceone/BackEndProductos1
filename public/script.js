@@ -18,6 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //eventos para mostrar y ocultar formularios
 
+
+
+
+  //mostrar imagen de multer
+  /*const currentImage = document.getElementById('currentImage');
+
+
+  mostrarCrearUsuarioFormBtn.addEventListener('click',() =>
+  {
+      crearUsuarioForm.classList.toggle('hidden');
+  });
+
+   */
+
+
+
+
+
     mostrarCrearProductoFormBtn.addEventListener('click', () => {
         crearProductoForm.classList.toggle('hidden');
     });
@@ -101,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
             descripcion: formData.get('descripcion'),
             categoria: formData.get('categoria'),
             precio: formData.get('precio'),
+            archivo: formData.get('archivo'),
+
         };
 
         const response = await fetch('/productos', {
@@ -109,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+
+            //aca tendriamos que enviarlo como form-data 1:19 youtube (te envio todo este paquete)
         });
     // procesa la respuesta del servidor
         const result = await response.json();
@@ -129,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
             descripcion: formData.get('editDescripcion'),
             categoria: formData.get('editCategoria'),
             precio: formData.get('editPrecio'),
+        
+
         };
 
         const response = await fetch(`/productos/${id}`, {
@@ -153,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bodyTablaProductos.innerHTML = '';  // Limpiamos el cuerpo de la tabla
 
         productos.forEach(producto => {
+            const imageSrc = producto.ruta_archivo ? `/uploads/${producto.ruta_archivo}` :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBbNf8tPjjMylsbREVGlN1Dj30k5_JVDZOg&s';
             
             const tr = document.createElement('tr'); //creamos una nueva fila para cada prodcuto
             tr.innerHTML = `
@@ -162,8 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${producto.descripcion}</td>
                 <td>${producto.categoria}</td>
                 <td>${producto.precio}</td>
+                <td><img src="${imageSrc}" alt="Img de perfil" width="20px"></td>
                 <td>
-                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"data-descripcion="${producto.descripcion}"data-categoria="${producto.categoria}" data-precio="${producto.precio}">Editar</button>
+                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"data-descripcion="${producto.descripcion}"data-categoria="${producto.categoria}" data-precio="${producto.precio}" data-image:"${imageSrc} >Editar</button>
                     <button class="delete" data-id="${producto.idProducto}">Borrar</button>
                 </td>
             `;
@@ -178,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const descripcion = e.target.getAttribute('data-descripcion');
                 const categoria = e.target.getAttribute('data-categoria');
                 const precio = e.target.getAttribute('data-precio');
+                const imagen = e.target.getAttribute('data-image');
 
                 document.getElementById('editID').value = id;
                 document.getElementById('editIdMarca').value = idMarca;
@@ -185,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('editDescripcion').value = descripcion;
                 document.getElementById('editCategoria').value = categoria;
                 document.getElementById('editPrecio').value = precio;
+                currentImage.src = imagen;
+             
 
                 editarProductoForm.classList.remove('hidden');
             });
