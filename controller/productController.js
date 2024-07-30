@@ -1,65 +1,55 @@
-const db = require('../db/db');
 
+const db = require('../db/db');
 //ACTUALIZACIÓN CON MULTER Y CARPETA PUBLIC (en la base de datos se guarda el path)
+//importa el modulo multer, el middleware para manejar la subida de archivos 
+//const multer = require('multer');
+//importa el modulo path, que proporciona utilidades para trabajar con rutas de archivos y directorios;
 const multer = require('multer');
 const path = require('path');
-
-
 //subir archivos
+//configura el almacenamiento de archivos con diskstorage
+const storage = multer.diskStorage({
+ //destination especifica la carpeta dende se guardaran los archivos
+        //cb es el coallback que se llama despues de termianr el destination
+            //el [primer argumento de cb es para el error]
 
-const storage = multer.diskStorage(
-    {
-        destination: function (req,file,cb){
-            cb(null,'uploads/');//Indica la carpeta donde se guardaran los archivos
-        },
-        filename: function(req,file,cb)
-        {
-            cb(null,Date.now() + '-' + file.originalname);//nombre del archivo en el disco
-        },
-        fileFilter: (req,file,cb) =>
-        {
-            const fileTypes = /jpeg|jpg|png|txt/;
+    destination: function (req, file, cb) {
+        cb(null,path.join(__dirname, '../uploads')); //carpeta donde se subiran los archivos
+    },
+   //filename especifica como se nombraran los archivos subidos
+        //cb es el callback que se llama despues de determinar el nombre del archivo
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    // date.now es para asegurar que cada archivo tenga un nombre unico
+            //path.extname() obtiene la extension del archivo original
 
+    },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|txt/;
+        const mimeType = fileTypes.test(file.mimetype.toLowerCase()); //tipos de archivos
+        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase()); //si los mimetyoes coinciden con los que estan permitidos, y ponerlos en minuscula
 
-            const mimeType = fileTypes.test(file.mimetype.toLowerCase());
-
-
-            const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-
-
-       
-            if(mimeType && extname)
-            {    
-                return cb(null,true);
-            }
-        
-        return cb(new Error('Error: Tipo de archivo NO PERMITIDO'), false);
-       
-        },
-        limits:
-        {
-            fileSize: 100000000
+        if (mimeType && extname) {
+            return cb(null, true);
         }
+        return cb(new Error('Error: Tipo de archivo NO PERMITIDO'), false);
+    },
+    limits: {
+        fileSize: 100000000
+    }
+});
 
-    });
+const upload = multer({ storage: storage });
+    //storage es el almacenamiento cofigurado que hemos definido previamente
+    //crea una instacioa de multer con la configuracion de almacenamiento definida
 
-    const upload = multer({storage: storage});
+//----fin de multer-----
 
-
-
-
-
-
-
-
-
-const ObtenerTodosLosProductos = (req,res) => 
-{
+function ObtenerTodosLosProductos(req, res) {
     const sql = 'SELECT * FROM productos';
 
-    db.query(sql, (err,result) => 
-    {
-        if(err) 
+    db.query(sql, (err, result) => {
+        if (err)
             throw err;
 
         res.json(result);
@@ -150,7 +140,7 @@ const crearMarca = (req, res) =>
     {
     const {nombre, categorias} = req.body;
     
-    const sql = 'INSERT INTO Marcas (nombre, categorias) VALUES (?,?)';
+    const sql = 'INSERT INTO marcas (nombre, categorias) VALUES (?,?)';
  
     db.query(sql,[nombre, categorias], (err,result) =>
     {
@@ -168,7 +158,7 @@ const crearMarca = (req, res) =>
 
 const ObtenerTodasLasMarcas = (req,res) => 
     {
-        const sql = 'SELECT * FROM Marcas';
+        const sql = 'SELECT * FROM marcas';
     
         db.query(sql, (err,result) => 
         {
@@ -182,7 +172,7 @@ const ObtenerTodasLasMarcas = (req,res) =>
     
 const ObtenerMarcaPorId = (req, res) =>{
         const {id} = req.params;
-        const sql = 'SELECT * FROM Marcas WHERE idMarca = ?';
+        const sql = 'SELECT * FROM marcas WHERE idMarca = ?';
     
         db.query(sql,[id], (err,result) =>
         {
@@ -206,4 +196,4 @@ module.exports =
    ObtenerMarcaPorId,
    crearMarca,
     upload
-}
+};
