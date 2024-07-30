@@ -22,22 +22,16 @@ connection.connect((err) => {
 module.exports = connection;
 
 */
-
-
-
-
-
 require('dotenv').config();
 const mySql = require('mysql2'); 
 
  const connection = mySql.createConnection(
 
-
  {
- host: process.env.DB_HOST,
- user: process.env.DB_USER,
- password: process.env.DB_PASSWORD,
- database: process.env.DB_NAME,
+ host:  'localhost',
+ user:  'root',
+ password: 'monacoa1',
+ database: 'tienda_ropa5',
 
   
   });
@@ -66,11 +60,11 @@ connection.connect((err) =>
             console.log("Base de datos asegurada");
 
 
-            connection.changeUser({database : 'tienda_ropa'}, (err)=>   //va tienda de ropa o el sql10718775
+            connection.changeUser({database : 'tienda_ropa5'}, (err)=>   //va tienda de ropa o el sql10718775
             {
                 if(err)
                 {
-                    console.error("Error al cambiar a tienda_ropa",err);
+                    console.error("Error al cambiar a tienda_ropa5",err);
                     return;
                 }
 

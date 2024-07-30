@@ -66,6 +66,14 @@
 
              <label for="precio">Precio Base:</label>
              <input type="number" id="precio" name="precio" step="0.01" required>
+
+
+            <!-- MULTER SE SUBE LA IMAGEN-->
+            <label for="archivo"> Archivos: </label>
+            <input type="file" id="archivo" name="archivo">
+           
+           <br>
+
              
              <button type="submit" id="guardarFormProducto"> Guardar </button>
          </form>
@@ -100,6 +108,10 @@
 
         <label for="editPrecio">Precio Base:</label>
         <input type="number" id="editPrecio" name="editPrecio" step="0.01" required>
+        <br>
+        <br>
+        <img id="currentImage" src="" alt="Imagen actual" width="100px">
+        <br>
         
         <button type="submit"> Actualizar</button>
     </form>
@@ -133,6 +145,7 @@
                     <th>Descripción</th>
                     <th>Categoría</th>
                     <th>Precio</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
