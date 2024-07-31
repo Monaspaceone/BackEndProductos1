@@ -1,4 +1,4 @@
-
+ <!DOCTYPE html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,7 @@
 
          <!--form para crear el nuevo usuario-->
 
-         <form id="crearProductoForm" class="hidden" enctype="multipart/form-data">
+         <form id="crearProductoForm" class="hidden" method='post' enctype="multipart/form-data">
 
              <h3>Producto</h3>
             
@@ -110,7 +110,7 @@
         <input type="number" id="editPrecio" name="editPrecio" step="0.01" required>
         <br>
         <br>
-        <img id="currentImage" src="" alt="Imagen actual" width="100px">
+        <img id="currentImage" src="" alt="Imagen actual" width="80px">
         <br>
         
         <button type="submit"> Actualizar</button>

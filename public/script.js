@@ -95,21 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const formData = new FormData(crearProductoForm);
-        const data = {
-            idMarca: formData.get('idMarca'),
-            producto: formData.get('producto'),
-            descripcion: formData.get('descripcion'),
-            categoria: formData.get('categoria'),
-            precio: formData.get('precio'),
-            archivo: formData.get('archivo'),
-        };
-
+       
         const response = await fetch('/productos', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            
+            body: formData
         });
 
  //aca tendriamos que enviarlo como form-data (con multer) 1:19 youtube (te envio todo este paquete)
@@ -168,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${producto.precio}</td>
                 <td><img src="${imageSrc}" alt="Img de perfil" width="20px"></td>
                 <td>
-                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"data-descripcion="${producto.descripcion}"data-categoria="${producto.categoria}" data-precio="${producto.precio}" data-image:"${imageSrc}">Editar</button>
+                    <button class="update" data-id="${producto.idProducto}" data-idMarca="${producto.idMarca}" data-producto="${producto.producto}"data-descripcion="${producto.descripcion}"data-categoria="${producto.categoria}" data-precio="${producto.precio}" data-image="${imageSrc}">Editar</button>
                     <button class="delete" data-id="${producto.idProducto}">Borrar</button>
                 </td>
             `;
@@ -191,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('editDescripcion').value = descripcion;
                 document.getElementById('editCategoria').value = categoria;
                 document.getElementById('editPrecio').value = precio;
+                const currentImage = document.getElementById('currentImage');
                 currentImage.src = imagen;
 
                 editarProductoForm.classList.remove('hidden');

@@ -77,7 +77,8 @@ connection.connect((err) =>
                         producto VARCHAR(100),
                         descripcion TEXT,
                         categoria VARCHAR(10),
-                        precio DECIMAL(10,2)
+                        precio DECIMAL(10,2),
+                        ruta_archivo VARCHAR(200)
                     );            
                 `;
 

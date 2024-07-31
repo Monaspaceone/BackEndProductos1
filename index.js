@@ -9,18 +9,17 @@ const marcasRouter = require('./routes/marcas');
 const multer = require('multer'); // Importar multer
 
 
-
-//revisar base de datos para ver si agregue el espacio de las imagenes
 // Configuración de multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Indica la carpeta donde se guardarán los archivos
+        cb(null, path.join(__dirname, 'uploads')); // Ruta donde se guardarán los archivos
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname); // Nombre del archivo en el disco, concatenado,
-    },
+        cb(null, Date.now() + '-' + file.originalname); // Nombre del archivo
+    }
 });
-const upload = multer({ storage: storage });
+
+const upload = multer({ storage: storage }); // Crear instancia de multer con la configuración
 
 app.use(express.json());
 //estaba comentada la linea de abajo, 
